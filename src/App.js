@@ -1,36 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navegacion from './components/common/Navegacion';
+import NavegacionAdm from './components/common/NavegacionAdm';
 import Footer from './components/common/Footer';
 import PaginaPrincipal from './components/pages/PaginaPrincipal';
 import Administracion from './components/pages/Administracion';
-import Actualidad from './components/categorias/Actualidad';
-import Deportes from './components/categorias/Deportes';
-import Economia from './components/categorias/Economia';
-import Espectaculos from './components/categorias/Espectaculos';
-import Fotografia from './components/categorias/Fotografia';
-import Politica from './components/categorias/Politica';
-import Salud from './components/categorias/Salud';
-import Tecnologia from './components/categorias/Tecnologia';
-
+import Categorias from './components/categorias/Categorias';
+import NuevaNoticia from './components/administracion/NuevaNoticia';
+import NuevaCategoria from './components/administracion/NuevaCategoria';
+import ListarCategoria from './components/administracion/ListarCategoria';
+import ListarNoticias from './components/administracion/ListarNoticias';
+import Error404 from './components/pages/Error404';
 
 function App() {
+  // peticion get, variable ectraigo categoria, map y hago un filtro que me muestre mi categoria
   return (
     <div>
       <Router>
-        <Navegacion />
+        <NavegacionAdm />
         <Routes>
           <Route exact path='/' element={<PaginaPrincipal />} />
           <Route exact path='/administracion' element={<Administracion />} />
-          <Route exact path='/categoria/actualidad' element={<Actualidad /> } />
-          <Route exact path='/categoria/deportes' element={<Deportes /> } />
-          <Route exact path='/categoria/economia' element={<Economia /> } />
-          <Route exact path='/categoria/espectaculos' element={<Espectaculos /> } />
-          <Route exact path='/categoria/fotografia' element={<Fotografia /> } />
-          <Route exact path='/categoria/politica' element={<Politica /> } />
-          <Route exact path='/categoria/salud' element={<Salud /> } />
-          <Route exact path='/categoria/Tecnologia' element={<Tecnologia /> } />
+          <Route exact path='/categoria/' element={<Categorias /> } />
+          <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia />} />
+          <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria />} />
+          <Route exact path='/administracion/noticias' element={<ListarNoticias />} />
+          <Route exact path='/administracion/categorias' element={<ListarCategoria />} />
+          <Route exact path='*' element={<Error404 />} />
         </Routes>
         <Footer />
       </Router>
