@@ -15,7 +15,8 @@ const NavegacionAdm = () => {
             <NavLink exact={true} to='/administracion/nueva-noticia' className="nav-link mx-2">Agregar Noticia</NavLink>
             <NavLink exact={true} to='/administracion/nueva-categoria' className="nav-link mx-2">Agregar Categoria</NavLink>  
             <NavLink exact={true} to='/administracion/noticias' className="nav-link mx-2">Noticias</NavLink>  
-            <NavLink exact={true} to='/administracion/categorias' className="nav-link mx-2">Categorias</NavLink>  
+            <NavLink exact={true} to='/administracion/categorias' className="nav-link mx-2">Categorias</NavLink>
+            <NavLink exact={true} to='/login' className="nav-link mx-2">Iniciar Sesión</NavLink>
             </Nav>
           </Navbar.Collapse>
       </Navbar>

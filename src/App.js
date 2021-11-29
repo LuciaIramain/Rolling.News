@@ -11,6 +11,7 @@ import NuevaCategoria from './components/administracion/NuevaCategoria';
 import ListarCategoria from './components/administracion/ListarCategoria';
 import ListarNoticias from './components/administracion/ListarNoticias';
 import Error404 from './components/pages/Error404';
+import Login from './components/pages/Login';
 
 function App() {
   // peticion get, variable ectraigo categoria, map y hago un filtro que me muestre mi categoria
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria />} />
           <Route exact path='/administracion/noticias' element={<ListarNoticias />} />
           <Route exact path='/administracion/categorias' element={<ListarCategoria />} />
+          <Route exact path='/login' element={<Login />} />
           <Route exact path='*' element={<Error404 />} />
         </Routes>
         <Footer />
