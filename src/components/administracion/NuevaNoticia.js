@@ -1,18 +1,19 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 // import Swal from 'sweetalert2'
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const NuevaNoticia = () => {
+const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
-  console.log(URL);
+
   const [tituloNoticia, setTituloNoticia] = useState("");
   const [descripcionBreve, setDescripcionBreve] = useState("");
   const [descripcionDetallada, setDescripcionDetallada] = useState("");
   const [autor, setAutor] = useState("");
   const [fecha, setFecha] = useState("");
   const [imagen, setImagen] = useState("");
-  const [destacada, setDestacada] = useState(false);
+  const [destacada, setDestacada] = useState('');
   const [categoria, setCategoria] = useState("");
   const [error, setError] = useState(false);
 
@@ -33,7 +34,6 @@ const NuevaNoticia = () => {
         autor.trim() === "" || 
         fecha.trim() === "" || 
         imagen.trim() === "" || 
-        destacada === "" || 
         categoria === ""
       ) {
         // mostrar un cartel de error
@@ -80,7 +80,9 @@ const NuevaNoticia = () => {
                 setFecha('');
                 setImagen('');
                 setDestacada('');
-                
+                props.consultarAPI();
+                // props.history.push('/administracion/noticias');
+              <Link to='/administracion/noticias'></Link>
             }
         }catch(error){
             console.log(error);
@@ -167,7 +169,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Actualidad"
               name="categoria"
-              value="actualidad"
+              value="Actualidad"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -175,7 +177,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Espectáculos"
               name="categoria"
-              value="espectaculos"
+              value="Espectáculos"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -183,7 +185,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Deportes"
               name="categoria"
-              value="deportes"
+              value="Deportes"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -191,7 +193,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Tecnología"
               name="categoria"
-              value="tecnologia"
+              value="Tecnología"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -199,7 +201,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Economía"
               name="deportes"
-              value="economia"
+              value="Economía"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -207,7 +209,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Política"
               name="categoria"
-              value="politica"
+              value="Política"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -215,7 +217,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Salud"
               name="categoria"
-              value="salud"
+              value="Salud"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -223,7 +225,7 @@ const NuevaNoticia = () => {
               type="radio"
               label="Fotografía"
               name="categoria"
-              value="fotografia"
+              value="Fotografía"
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
