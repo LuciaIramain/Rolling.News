@@ -1,8 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 // import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -11,7 +10,7 @@ const NuevaNoticia = (props) => {
   const [descripcionBreve, setDescripcionBreve] = useState("");
   const [descripcionDetallada, setDescripcionDetallada] = useState("");
   const [autor, setAutor] = useState("");
-  const [fecha, setFecha] = useState("");
+  const [fecha, setFecha] = useState('');
   const [imagen, setImagen] = useState("");
   const [destacada, setDestacada] = useState('');
   const [categoria, setCategoria] = useState("");
@@ -36,7 +35,6 @@ const NuevaNoticia = (props) => {
         imagen.trim() === "" || 
         categoria === ""
       ) {
-        // mostrar un cartel de error
         setError(true);
         return;
       } else {
@@ -65,13 +63,12 @@ const NuevaNoticia = (props) => {
             const respuesta = await fetch(URL, parametros);
             console.log(respuesta);
             if((await respuesta.status) === 201) {
-                // mostrar un cartel al usuario
-                // Swal.fire(
-                //   'Noticia agregada!',
-                //   'Se cargo una nueva noticia en RollingNews!',
-                //   'success'
-                // )
-                // limpiar el formulario
+                Swal.fire(
+                  'Noticia agregada!',
+                  'Se cargo una nueva noticia en RollingNews!',
+                  'success'
+                );
+
                 setTituloNoticia('');
                 setDescripcionBreve('');
                 setDescripcionDetallada('');
@@ -80,17 +77,17 @@ const NuevaNoticia = (props) => {
                 setFecha('');
                 setImagen('');
                 setDestacada('');
+
                 props.consultarAPI();
                 // props.history.push('/administracion/noticias');
-              <Link to='/administracion/noticias'></Link>
             }
         }catch(error){
             console.log(error);
-            // Swal.fire(
-            //     'Noticia agregada!',
-            //     'Se cargo una nueva noticia en RollingNews!',
-            //     'danger'
-            // )
+            Swal.fire(
+                'No se pudo agregar la noticia',
+                'Por favor intentelo de nuevo más tarde',
+                'error'
+            );
         }
     }
   }
@@ -231,8 +228,7 @@ const NuevaNoticia = (props) => {
             ></Form.Check>
           </section>
           <Button
-            variant="warning"
-            className="text-light w-100 mb-5"
+            className="color text-light w-100 mb-5 mt-3"
             type="submit"
           >
             Agregar noticia

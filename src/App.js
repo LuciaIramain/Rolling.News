@@ -13,6 +13,7 @@ import ListarNoticias from './components/administracion/ListarNoticias';
 import Error404 from './components/pages/Error404';
 import Login from './components/pages/Login';
 import EditarNoticia from './components/administracion/EditarNoticia';
+import DetalleNoticia from './components/pages/DetalleNoticia';
 
 function App() {
   // peticion get, variable ectraigo categoria, map y hago un filtro que me muestre mi categoria
@@ -28,7 +29,6 @@ function App() {
     try{
       const consulta = await fetch(URL);
       const respuesta = await consulta.json(); 
-      console.log(respuesta);
       setNoticias(respuesta);
     } catch(error) {
       console.log(error);
@@ -44,6 +44,7 @@ function App() {
           <Route exact path='/' element={<PaginaPrincipal />} />
           <Route exact path='/administracion' element={<Administracion />} />
           <Route exact path='/categoria/' element={<Categorias /> } />
+          <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>
           <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
