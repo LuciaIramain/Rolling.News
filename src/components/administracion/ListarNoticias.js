@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Container, ListGroup } from 'react-bootstrap';
-import ItemNoticia from './ItemNoticia';
+import ItemNoticia from './NoticiaParticular';
 
 const ListarNoticias = (props) => {
     return (
