@@ -29,7 +29,9 @@ const EditarNoticia = (props) => {
       const res = await fetch(URL + "/" + id);
       if (res.status === 200) {
         const consulta = await res.json();
-        setNoticia(consulta);
+        const fechaTransf = new Date(consulta.fecha);
+        const fechaT = `${fechaTransf?.getFullYear()}-${fechaTransf?.getMonth()}-${fechaTransf?.getDate()}`;
+        setNoticia({...consulta, fechaT});
       }
     } catch (error) {
       console.log(error);
@@ -159,7 +161,7 @@ const EditarNoticia = (props) => {
             <Form.Label>Fecha *</Form.Label>
             <Form.Control
               type="date"
-              defaultValue={noticia.fecha}
+              defaultValue={noticia.fechaT}
               ref={fechaRef}
             />
           </Form.Group>

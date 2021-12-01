@@ -61,7 +61,7 @@ const NuevaNoticia = (props) => {
               };
 
             const respuesta = await fetch(URL, parametros);
-            console.log(respuesta);
+        
             if((await respuesta.status) === 201) {
                 Swal.fire(
                   'Noticia agregada!',
