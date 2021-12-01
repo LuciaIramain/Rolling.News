@@ -43,12 +43,12 @@ function App() {
         <Routes>
           <Route exact path='/' element={<PaginaPrincipal />} />
           <Route exact path='/administracion' element={<Administracion />} />
-          <Route exact path='/categoria/' element={<Categorias /> } />
+          <Route exact path='/categoria/' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
           <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>
           <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
-          <Route exact path='/administracion/categorias' element={<ListarCategoria consultarAPI={consultarAPI} />} />
+          <Route exact path='/administracion/categorias' element={<ListarCategoria noticias={noticias} consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia consultarAPI={consultarAPI} />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='*' element={<Error404 />} />
