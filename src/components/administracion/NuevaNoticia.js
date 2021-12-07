@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
-import Swal from 'sweetalert2'
-// import { withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
+
+// import { Redirect } from 'react-router';
 
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -10,10 +11,10 @@ const NuevaNoticia = (props) => {
   const [descripcionBreve, setDescripcionBreve] = useState("");
   const [descripcionDetallada, setDescripcionDetallada] = useState("");
   const [autor, setAutor] = useState("");
-  const [fecha, setFecha] = useState('');
+  const [fecha, setFecha] = useState("");
   const [imagen, setImagen] = useState("");
-  const [destacada, setDestacada] = useState('');
-  const [categoria, setCategoria] = useState("");
+  const [destacada, setDestacada] = useState("");
+  const [categoria, setCategoria] = useState([]);
   const [error, setError] = useState(false);
 
   const verNoticiaDestacada = (e) => {
@@ -24,73 +25,84 @@ const NuevaNoticia = (props) => {
     setCategoria(e.target.value);
   };
 
+  const categorias = categoria.map((categoria) => (
+    <Form.Check
+      type="radio"
+      label={categoria}
+      name="categoria"
+      value={categoria}
+      onChange={cambiarCategoria}
+      inline
+    ></Form.Check>
+  ));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-        tituloNoticia.trim() === "" ||
-        descripcionBreve.trim() === "" || 
-        descripcionDetallada.trim() === "" || 
-        autor.trim() === "" || 
-        fecha.trim() === "" || 
-        imagen.trim() === "" || 
-        categoria === ""
-      ) {
-        setError(true);
-        return;
-      } else {
-        setError(false);
-        // Creo la noticia
-        const datosNoticia = {
-            tituloNoticia,
-            descripcionBreve,
-            descripcionDetallada,
-            categoria,
-            autor,
-            fecha,
-            imagen,
-            destacada
+      tituloNoticia.trim() === "" ||
+      descripcionBreve.trim() === "" ||
+      descripcionDetallada.trim() === "" ||
+      autor.trim() === "" ||
+      fecha.trim() === "" ||
+      imagen.trim() === "" ||
+      categoria === ""
+    ) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      // Creo la noticia
+      const datosNoticia = {
+        tituloNoticia,
+        descripcionBreve,
+        descripcionDetallada,
+        categoria,
+        autor,
+        fecha,
+        imagen,
+        destacada,
+      };
+
+      try {
+        const parametros = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datosNoticia),
+        };
+
+        const respuesta = await fetch(URL, parametros);
+
+        if ((await respuesta.status) === 201) {
+          Swal.fire(
+            "Noticia agregada!",
+            "Se cargo una nueva noticia en RollingNews!",
+            "success"
+          );
+
+          setTituloNoticia("");
+          setDescripcionBreve("");
+          setDescripcionDetallada("");
+          setCategoria("");
+          setAutor("");
+          setFecha("");
+          setImagen("");
+          setDestacada("");
+
+          props.consultarAPI();
+          // <Redirect to='/administracion/noticias' />;
         }
-
-        try{
-            const parametros = {
-                method: "POST", 
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datosNoticia)
-              };
-
-            const respuesta = await fetch(URL, parametros);
-        
-            if((await respuesta.status) === 201) {
-                Swal.fire(
-                  'Noticia agregada!',
-                  'Se cargo una nueva noticia en RollingNews!',
-                  'success'
-                );
-
-                setTituloNoticia('');
-                setDescripcionBreve('');
-                setDescripcionDetallada('');
-                setCategoria('');
-                setAutor('');
-                setFecha('');
-                setImagen('');
-                setDestacada('');
-
-                props.consultarAPI();
-                // props.history.push('/administracion/noticias');
-            }
-        }catch(error){
-            console.log(error);
-            Swal.fire(
-                'No se pudo agregar la noticia',
-                'Por favor intentelo de nuevo más tarde',
-                'error'
-            );
-        }
+      } catch (error) {
+        console.log(error);
+        Swal.fire(
+          "No se pudo agregar la noticia",
+          "Por favor intentelo de nuevo más tarde",
+          "error"
+        );
+      }
     }
-  }
+  };
 
   return (
     <Fragment>
@@ -111,62 +123,66 @@ const NuevaNoticia = (props) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Titulo de la Noticia *</Form.Label>
-            <Form.Control 
-                type="text" 
-                value={tituloNoticia} 
-                onChange={(e) => setTituloNoticia(e.target.value)} 
-                 />
+            <Form.Control
+              type="text"
+              value={tituloNoticia}
+              onChange={(e) => setTituloNoticia(e.target.value)}
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Descripción breve *</Form.Label>
-            <Form.Control 
-                as="textarea" rows={3} 
-                value={descripcionBreve} 
-                onChange={(e) => setDescripcionBreve(e.target.value)} 
-                maxLength="500" 
-                 />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={descripcionBreve}
+              onChange={(e) => setDescripcionBreve(e.target.value)}
+              maxLength="500"
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Descripción detallada *</Form.Label>
-            <Form.Control 
-                as="textarea" rows={3} 
-                value={descripcionDetallada} 
-                maxLength="10000" 
-                minlenght="1000"
-                onChange={(e) => setDescripcionDetallada(e.target.value)} 
-                 />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={descripcionDetallada}
+              maxLength="10000"
+              minlenght="1000"
+              onChange={(e) => setDescripcionDetallada(e.target.value)}
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Autor *</Form.Label>
-            <Form.Control 
-                type="text" 
-                value={autor} 
-                onChange={(e) => setAutor(e.target.value)} 
-                 />
+            <Form.Control
+              type="text"
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Fecha *</Form.Label>
-            <Form.Control 
-                type="date" 
-                value={fecha} 
-                onChange={(e) => setFecha(e.target.value)} 
-                 />
+            <Form.Control
+              type="date"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Imagen URL *</Form.Label>
-            <Form.Control 
-                type="text" 
-                value={imagen} 
-                onChange={(e) => setImagen(e.target.value)} 
-                 />
+            <Form.Control
+              type="text"
+              value={imagen}
+              onChange={(e) => setImagen(e.target.value)}
+            />
           </Form.Group>
           <section className="text-center my-3">
+            {/* traer las categorias, lo mapeo con un array y pongo un solo radio dinamico */}
             <h5>Categoria *</h5>
-            <Form.Check
+            {categorias}
+            {/* <Form.Check
               type="radio"
-              label="Actualidad"
+              label="Actualidad" //props.namecategoria
               name="categoria"
-              value="Actualidad"
+              value="Actualidad" //props.categoria
               onChange={cambiarCategoria}
               inline
             ></Form.Check>
@@ -225,12 +241,9 @@ const NuevaNoticia = (props) => {
               value="Fotografía"
               onChange={cambiarCategoria}
               inline
-            ></Form.Check>
+            ></Form.Check> */}
           </section>
-          <Button
-            className="color text-light w-100 mb-5 mt-3"
-            type="submit"
-          >
+          <Button className="color text-light w-100 mb-5 mt-3" type="submit">
             Agregar noticia
           </Button>
         </Form>

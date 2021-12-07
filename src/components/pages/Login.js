@@ -4,18 +4,15 @@ import { Link } from "react-router-dom";
 import "../css/Login.css";
 
 const Login = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
+
     const [ usuario, setUsuario ] = useState({
         email: '',
         password: ''
     })
 
-    const {email, password } = usuario;
+    const { email, password } = usuario;
 
   const changeLogin = (e) => {
-    // setEmail(e.target.value);
-    // setPassword(e.target.value);
     setUsuario({
         ...usuario,
         [e.target.name]: e.target.value
@@ -25,6 +22,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacios
+
+    // peticion get para verificar -- que token sea admitido y descifrar el password
+    
+
   };
 
   return (
@@ -59,6 +60,9 @@ const Login = () => {
         <hr />
         <Link to="*" className="nav-link">
             ¿Olvidaste tu contraseña?
+        </Link>
+        <Link to="/administracion/nueva-cuenta" className="nav-link">
+            ¿Aún no tienes tu cuenta? ¡Regístrate ahora!
         </Link>
       </section>
     </div>

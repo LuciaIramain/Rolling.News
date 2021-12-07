@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
+import '../css/estiloGeneral.css';
 
-const ItemNoticia = (props) => {
+const NoticiaParticular = (props) => {
   const eliminarNoticia = (id) => {
     const URL = process.env.REACT_APP_API_URL + "/" + id;
     Swal.fire({
@@ -51,14 +52,14 @@ const ItemNoticia = (props) => {
   return (
     <div>
       <ListGroup.Item className="d-flex justify-content-between">
-        <section className="w-75">
+        <section className="w-75 ">
           <h5>{props.noticia.categoria}</h5>
           <p>
             <strong>{props.noticia.tituloNoticia}</strong>
           </p>
           <p>{props.noticia.descripcionBreve}</p>
         </section>
-        <section>
+        <section className='listaNoticia'>
           <Link
             to={`/administracion/editar-noticia/${props.noticia._id}`}
             className="btn color me-1 text-light"
@@ -77,4 +78,4 @@ const ItemNoticia = (props) => {
   );
 };
 
-export default ItemNoticia;
+export default NoticiaParticular;

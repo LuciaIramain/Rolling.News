@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useParams, withRouter } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { campoRequerido } from "../common/validaciones";
 import Swal from "sweetalert2";
 import "../css/estiloGeneral.css";
@@ -45,23 +45,30 @@ const EditarNoticia = (props) => {
   const cambiarCategoria = (e) => {
     setCategoria(e.target.value);
   };
-
+ 
+  console.log(fechaRef.current.value)
+  console.log(imagenRef.current.value)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const categoriaSeleccionada =
       (categoria === "") ? noticia.categoria : categoria;
     const destacadaSeleccionada =
       (destacada === "") ? noticia.destacada : destacada;
+      
     if (
       campoRequerido(tituloNoticiaRef.current.value) === "" &&
       campoRequerido(descripcionBreveRef.current.value) === "" &&
       campoRequerido(descripcionDetalladaRef.current.value) === "" &&
-      campoRequerido(autorRef.current.value) === "" &&
-      campoRequerido(fechaRef.current.value) === "" &&
-      campoRequerido(imagenRef.current.value) === "" &&
-      campoRequerido(categoriaSeleccionada) === "" &&
-      campoRequerido(destacadaSeleccionada) === ""
+      campoRequerido(autorRef.current.value) === "" 
+      
+      
+      
     ) {
+      Swal.fire(
+				"Todos los campos son obligatorios",
+				"error"
+			);
+    } else {
       const noticiaEditada = {
         tituloNoticia: tituloNoticiaRef.current.value,
         descripcionBreve: descripcionBreveRef.current.value,
@@ -72,7 +79,7 @@ const EditarNoticia = (props) => {
         imagen: imagenRef.current.value,
         destacada: destacadaSeleccionada,
       };
-
+      
       try {
         const res = await fetch(URL + "/" + id, {
           method: "PUT",
@@ -89,6 +96,7 @@ const EditarNoticia = (props) => {
           );
           props.consultarAPI();
         }
+        
       } catch (error) {
         console.log(error);
         Swal.fire(
@@ -97,11 +105,6 @@ const EditarNoticia = (props) => {
           "error"
         );
       }
-    } else {
-			Swal.fire(
-				"Todos los campos son obligatorios",
-				"error"
-			);
 		}
   };
 
@@ -222,7 +225,7 @@ const EditarNoticia = (props) => {
             <Form.Check
               type="radio"
               label="Economía"
-              name="deportes"
+              name="categoria"
               value="Economía"
               onChange={cambiarCategoria}
               defaultChecked={

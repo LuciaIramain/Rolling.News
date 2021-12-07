@@ -14,6 +14,7 @@ import Error404 from './components/pages/Error404';
 import Login from './components/pages/Login';
 import EditarNoticia from './components/administracion/EditarNoticia';
 import DetalleNoticia from './components/pages/DetalleNoticia';
+import NuevaCuenta from './components/administracion/NuevaCuenta';
 
 function App() {
   // peticion get, variable ectraigo categoria, map y hago un filtro que me muestre mi categoria
@@ -43,13 +44,14 @@ function App() {
         <Routes>
           <Route exact path='/' element={<PaginaPrincipal />} />
           <Route exact path='/administracion' element={<Administracion />} />
-          <Route exact path='/categoria/' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
+          <Route exact path='/categoria/:categoria' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
           <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>
-          <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia consultarAPI={consultarAPI} />} />
+          <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia noticias={noticias} consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/categorias' element={<ListarCategoria noticias={noticias} consultarAPI={consultarAPI} />} />
           <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia consultarAPI={consultarAPI} />} />
+          <Route exact path='/administracion/nueva-cuenta' element={<NuevaCuenta />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='*' element={<Error404 />} />
         </Routes>

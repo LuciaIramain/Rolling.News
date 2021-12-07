@@ -40,7 +40,7 @@ const NuevaCategoria = (props) => {
           'Error 500 al tratar de agregar la categoría',
           'Por favor intentelo de nuevo más tarde',
           'error'
-      );
+        );
       }
       } catch(error) {
         console.log(error);
