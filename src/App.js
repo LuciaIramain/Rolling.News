@@ -42,8 +42,8 @@ function App() {
       <Router>
         <NavegacionAdm />
         <Routes>
-          <Route exact path='/' element={<PaginaPrincipal />} />
-          <Route exact path='/administracion' element={<Administracion />} />
+          <Route exact path='/' element={<PaginaPrincipal noticias={noticias} consultarAPI={consultarAPI} />} />
+          <Route exact path='/administracion' element={<Administracion  />} />
           <Route exact path='/categoria/:categoria' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
           <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>
           <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia noticias={noticias} consultarAPI={consultarAPI} />} />

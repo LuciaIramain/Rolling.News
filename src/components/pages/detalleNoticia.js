@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../css/estiloGeneral.css";
 
-const DetalleNoticia = (props) => {
+const DetalleNoticia = () => {
   const { id } = useParams();
   const URL = process.env.REACT_APP_API_URL;
 
@@ -34,7 +34,7 @@ const DetalleNoticia = (props) => {
       <p className="my-3 lead textoNoticia">{noticia.descripcionBreve}</p> 
       <p className="my-2">{noticia.fechaTra}</p>
       <p className="my-2">{noticia.autor}</p> 
-      <img src={noticia.imagen} alt="imagen noticia"   className="my-3 imgNoticia"/>
+      <img src={noticia.imagen} alt="imagen noticia" className="my-3 imgNoticia"/>
       <p className="my-5 textoNoticia">{noticia.descripcionDetallada}</p> 
       </section>
     </Fragment>

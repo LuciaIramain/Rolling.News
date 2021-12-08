@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../css/Login.css";
 
 const NuevaCuenta = () => {
+  const URL = process.env.REACT_APP_API_URL;
     const [errorCampos, setErrorCampos] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [errorConfirmar, setErrorConfirmar] = useState(false);
@@ -22,6 +23,14 @@ const NuevaCuenta = () => {
         [e.target.name]: e.target.value
     });
   };
+
+  const registrarUsuario = async (datos) => {
+    try{
+      
+    }catch(error) {
+      console.log(error);
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
