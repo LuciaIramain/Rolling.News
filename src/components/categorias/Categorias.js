@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useParams, Link} from 'react-router-dom';
 import { Card } from "react-bootstrap";
-import DetalleNoticia from "../pages/DetalleNoticia";
+import "../css/estiloGeneral.css"
 
 const Categorias = () => {
   const [noticias, setNoticias] = useState([]);
@@ -28,15 +28,15 @@ const Categorias = () => {
   }
 
   const newsCategoria = noticias.map(noticia => 
-    <Card key={noticia._id} className="m-4 noticiaPrincipal">
-    <Card.Img variant="top" src={noticia.imagen} />
+    <Card key={noticia._id} className="m-4 tamañoCard">
+    <Card.Img variant="top" className="imgNoticiaCategoria" src={noticia.imagen} />
     <Card.Body>
       <Card.Title>{noticia.tituloNoticia}</Card.Title>
       <Card.Text>
        {noticia.descripcionBreve}
       </Card.Text>
       <Link to={`/detalle-noticia/${noticia._id}`} className='color btn text-light'>
-                    Ver más
+        Ver más
       </Link>
     </Card.Body>
     </Card>
@@ -45,8 +45,8 @@ const Categorias = () => {
   return (
     <div>
       <h1 className="text-center my-5">{params.categoria}</h1>
-      <section>
-        {newsCategoria}
+      <section className='cardNoticiaCategoria'>
+      {newsCategoria}
       </section>
     </div>
   );

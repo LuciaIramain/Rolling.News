@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListGroup } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
 const CategoriaParticular = (props) => {
-    
     let categoria = props.noticia.categoria;
     
-
     return (
         <div>
             <ListGroup.Item className="d-flex justify-content-between">

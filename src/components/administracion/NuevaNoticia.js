@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
-
-// import { Redirect } from 'react-router';
+import { useNavigate } from "react-router-dom";
 
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
-
+  let navigate = useNavigate();
+  
   const [tituloNoticia, setTituloNoticia] = useState("");
   const [descripcionBreve, setDescripcionBreve] = useState("");
   const [descripcionDetallada, setDescripcionDetallada] = useState("");
@@ -25,16 +25,19 @@ const NuevaNoticia = (props) => {
     setCategoria(e.target.value);
   };
 
-  const categorias = categoria.map((categoria) => (
+  let noticiaCategoria = props.noticias;
+
+  const categorias = noticiaCategoria.map(cat => 
     <Form.Check
+      key={cat._id}
       type="radio"
-      label={categoria}
+      label={cat.categoria}
       name="categoria"
-      value={categoria}
+      value={cat.categoria}
       onChange={cambiarCategoria}
       inline
     ></Form.Check>
-  ));
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,7 +94,7 @@ const NuevaNoticia = (props) => {
           setDestacada("");
 
           props.consultarAPI();
-          // <Redirect to='/administracion/noticias' />;
+          navigate("/administracion/noticias");
         }
       } catch (error) {
         console.log(error);
