@@ -1,25 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import DetalleNoticia from "./DetalleNoticia";
+import Navegacion from "../common/Navegacion";
 
-const PaginaPrincipal = (props) => {
-
-
+const PaginaPrincipal = () => {
+  
     // hacer un filter y que me muestre las categorias que necesito
-    console.log(props);
 
   return (
     <Fragment>
+      <Navegacion />
       <div className="row mb-5">
         <section className="col-sm-12 col-md-6">
           <Card className="m-4 noticiaPrincipal">
-            <Card.Img variant="top" src={props.noticias.imagen} />
+            <Card.Img variant="top" src='' />
             <Card.Body>
-              <Card.Title>{props.noticias.tituloNoticia}</Card.Title>
+              <Card.Title></Card.Title>
               <Card.Text>
-               {props.noticias.descripcionBreve}
+               
               </Card.Text>
-              <Button variant="primary"><DetalleNoticia /></Button>
+              <Button variant="primary"></Button>
             </Card.Body>
           </Card>
         </section>

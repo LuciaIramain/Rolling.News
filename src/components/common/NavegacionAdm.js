@@ -1,9 +1,23 @@
 import React, { Fragment } from "react";
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import {Button} from "react-bootstrap";
 import '../css/navegacion.css';
 
 const NavegacionAdm = () => {
+  const URL = process.env.REACT_APP_API_URL;
+  const URL_U = URL + 'usuarios/auth/';
+
+
+  const handleLogout = async () => {
+    try{
+      const consulta = await fetch(URL_U);
+      const respuesta = await consulta.json(); 
+      
+    } catch(error) {
+      console.log(error);
+    }
+  }
   return (
     <Fragment>
       <Navbar bg="light" expand="lg">
@@ -16,8 +30,9 @@ const NavegacionAdm = () => {
             <NavLink exact="true" to='/administracion/nueva-categoria' className="nav-link mx-2">Agregar Categoria</NavLink>  
             <NavLink exact="true" to='/administracion/noticias' className="nav-link mx-2">Noticias</NavLink>  
             <NavLink exact="true" to='/administracion/categorias' className="nav-link mx-2">Categorias</NavLink>
-            <NavLink exact="true" to='/login' className="nav-link mx-2">Iniciar Sesión</NavLink>
-            <NavLink exact="true" to='/detalle-noticia/:id' className="nav-link mx-2">Detalle</NavLink>
+            <Button onClick={handleLogout} className="nav-link">
+            Cerrar sesión
+          </Button>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
