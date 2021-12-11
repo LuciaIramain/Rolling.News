@@ -2,6 +2,8 @@ import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import NavegacionAdm from "../common/NavegacionAdm";
+import "../css/estiloGeneral.css";
 
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -108,7 +110,8 @@ const NuevaNoticia = (props) => {
   };
 
   return (
-    <Fragment>
+    <Fragment className="contenido">
+      <NavegacionAdm />
       <h1 className="my-4 text-center">Agregar una nueva noticia</h1>
       <Container className="my-5">
         <Form onSubmit={handleSubmit}>
@@ -177,7 +180,7 @@ const NuevaNoticia = (props) => {
               onChange={(e) => setImagen(e.target.value)}
             />
           </Form.Group>
-          <section className="text-center my-3">
+          <section className="text-center my-4">
             {/* traer las categorias, lo mapeo con un array y pongo un solo radio dinamico */}
             <h5>Categoria *</h5>
             {categorias}

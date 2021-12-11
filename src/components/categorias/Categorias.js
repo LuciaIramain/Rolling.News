@@ -43,7 +43,7 @@ const Categorias = () => {
   );
 
   return (
-    <div>
+    <div className="contenido">
       <h1 className="text-center my-5">{params.categoria}</h1>
       <section className='cardNoticiaCategoria'>
       {newsCategoria}

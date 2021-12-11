@@ -3,7 +3,7 @@ import '../css/estiloGeneral.css'
 
 const Footer = () => {
     return (
-        <section className='bg-dark text-light text-center py-4 mt-5 '>
+        <section className='bg-dark text-light text-center piePagina'>
             <p>&copy; Todos los derechos reservados.</p>
         </section>
     );

@@ -1,10 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Container, ListGroup } from 'react-bootstrap';
 import NoticiaParticular from './NoticiaParticular';
+import NavegacionAdm from '../common/NavegacionAdm';
+import "../css/estiloGeneral.css"
 
 const ListarNoticias = (props) => {
     return (
-        <Fragment>
+        <div className='contenido'>
+            <NavegacionAdm />
             <Container>
                 <h1 className="my-4 text-center">Lista de noticias</h1>
                 <ListGroup>
@@ -13,7 +16,7 @@ const ListarNoticias = (props) => {
                 }
                 </ListGroup>
             </Container>
-        </Fragment>
+        </div>
     );
 };
 

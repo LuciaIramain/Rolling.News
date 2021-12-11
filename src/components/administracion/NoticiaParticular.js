@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
-import "../css/estiloGeneral.css";
+
 
 const NoticiaParticular = (props) => {
   const eliminarNoticia = (id) => {

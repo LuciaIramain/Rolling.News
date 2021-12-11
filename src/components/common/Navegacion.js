@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Offcanvas } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
-import "../css/navegacion.css";
+import '../css/estiloGeneral.css';
 
 const Navegacion = () => {
   // hacer logica de login y hacer la logica de navbar con state

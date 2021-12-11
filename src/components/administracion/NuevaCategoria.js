@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import NavegacionAdm from "../common/NavegacionAdm";
 
 const NuevaCategoria = (props) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -57,7 +58,8 @@ const NuevaCategoria = (props) => {
   };
 
   return (
-    <div>
+    <div className="contenido">
+      <NavegacionAdm />
       <h1 className="my-4 text-center">Agregar una nueva categoria</h1>
       <Form onSubmit={handleSubmit}>
         <Container>

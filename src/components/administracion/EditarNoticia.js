@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { campoRequerido } from "../common/validaciones";
 import Swal from "sweetalert2";
 import "../css/estiloGeneral.css";
+import NavegacionAdm from "../common/NavegacionAdm";
 
 const EditarNoticia = (props) => {
   const { id } = useParams();
@@ -109,7 +110,8 @@ const EditarNoticia = (props) => {
   };
 
   return (
-    <Fragment>
+    <Fragment className="contenido">
+      <NavegacionAdm />
       <h1 className="my-4 text-center">Editar noticia</h1>
       <Container className="my-5">
         <Form onSubmit={handleSubmit}>

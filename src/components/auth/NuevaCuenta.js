@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
+import "../css/estiloGeneral.css";
 
 const NuevaCuenta = () => {
   const URL = process.env.REACT_APP_API_URL;
@@ -108,7 +109,7 @@ const NuevaCuenta = () => {
   };
 
   return (
-    <div className="form-usuario">
+    <div className="form-usuario contenido">
       <section className="contenedor-form sombra-dark">
         <h1>Crear una cuenta</h1>
         <Form onSubmit={handleSubmit}>

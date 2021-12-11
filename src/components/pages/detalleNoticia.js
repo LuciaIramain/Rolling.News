@@ -27,7 +27,7 @@ const DetalleNoticia = () => {
   };
   
   return (
-    <Fragment>
+    <Fragment className="contenido">
       <section className="container">
       <h2 className="my-5 colorTexto">{noticia.categoria}</h2> 
       <h1 className="my-4 colorTexto">{noticia.tituloNoticia}</h1>
@@ -35,7 +35,7 @@ const DetalleNoticia = () => {
       <p className="my-2">{noticia.fechaTra}</p>
       <p className="my-2">{noticia.autor}</p> 
       <img src={noticia.imagen} alt="imagen noticia" className="my-3 imgNoticia"/>
-      <p className="my-5 textoNoticia">{noticia.descripcionDetallada}</p> 
+      <p className="my-5 textoNoticia lh-1">{noticia.descripcionDetallada}</p> 
       </section>
     </Fragment>
   );
