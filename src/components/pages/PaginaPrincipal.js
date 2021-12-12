@@ -4,13 +4,13 @@ import DetalleNoticia from "./DetalleNoticia";
 import Navegacion from "../common/Navegacion";
 import "../css/estiloGeneral.css";
 
-const PaginaPrincipal = () => {
+const PaginaPrincipal = (props) => {
   
     // hacer un filter y que me muestre las categorias que necesito
-
+   
   return (
     <div className="contenido">
-      <Navegacion />
+      <Navegacion noticias={props.noticias} consultarAPI={props.consultarAPI} />
       <div className="row mb-5">
         <section className="col-sm-12 col-md-6">
           <Card className="m-4">

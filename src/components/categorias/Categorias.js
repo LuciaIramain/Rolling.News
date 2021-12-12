@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {useParams, Link} from 'react-router-dom';
 import { Card } from "react-bootstrap";
 import "../css/estiloGeneral.css"
+import NavegacionAdm from "../common/NavegacionAdm";
+import Navegacion from "../common/Navegacion";
 
 const Categorias = () => {
   const [noticias, setNoticias] = useState([]);
@@ -44,6 +46,8 @@ const Categorias = () => {
 
   return (
     <div className="contenido">
+      {/* si estas logeado renderizame navegacionAdm sino Navegacion */}
+      {/* {(login) ? <NavegacionAdm /> : <Navegacion />} */}
       <h1 className="text-center my-5">{params.categoria}</h1>
       <section className='cardNoticiaCategoria'>
       {newsCategoria}

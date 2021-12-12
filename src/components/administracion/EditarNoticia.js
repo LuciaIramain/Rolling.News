@@ -2,13 +2,15 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { campoRequerido } from "../common/validaciones";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import "../css/estiloGeneral.css";
 import NavegacionAdm from "../common/NavegacionAdm";
+import "../css/estiloGeneral.css";
 
 const EditarNoticia = (props) => {
   const { id } = useParams();
   const URL = process.env.REACT_APP_API_URL;
+  let navigate = useNavigate();
 
   const [destacada, setDestacada] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -60,10 +62,9 @@ const EditarNoticia = (props) => {
       campoRequerido(tituloNoticiaRef.current.value) === "" &&
       campoRequerido(descripcionBreveRef.current.value) === "" &&
       campoRequerido(descripcionDetalladaRef.current.value) === "" &&
-      campoRequerido(autorRef.current.value) === "" 
-      
-      
-      
+      campoRequerido(autorRef.current.value) === ""  &&
+      campoRequerido(fechaRef.current.value) === ""  &&
+      campoRequerido(imagenRef.current.value) === ""  
     ) {
       Swal.fire(
 				"Todos los campos son obligatorios",
@@ -96,6 +97,7 @@ const EditarNoticia = (props) => {
             "success"
           );
           props.consultarAPI();
+          navigate("/administracion/noticias");
         }
         
       } catch (error) {

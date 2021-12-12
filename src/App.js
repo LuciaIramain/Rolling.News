@@ -42,7 +42,7 @@ function App() {
      
         <Router>
           <Routes>
-            <Route exact path='/' element={<PaginaPrincipal />} />
+            <Route exact path='/' element={<PaginaPrincipal noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion' element={<Administracion  />} />
             <Route exact path='/categoria/:categoria' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
             <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>

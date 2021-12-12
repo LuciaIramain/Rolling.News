@@ -17,6 +17,7 @@ const NavegacionAdm = () => {
       console.log(error);
     }
   };
+  
   return (
     <Fragment>
       <Navbar bg="light" expand="lg">
