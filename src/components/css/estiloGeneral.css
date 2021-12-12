@@ -59,8 +59,17 @@
     flex-direction: row;
 }
 
-.cate {
-    display: hidden;
+.boton-navbar {
+    margin-right: 20px;
+}
+
+.navegacion {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.navbar-responsive {
+    padding-left: 210px;
 }
 
 @media all and (min-width: 360px) and (max-width:767px) {
@@ -92,6 +101,48 @@
     .tamañoCard {
         width: 80%;
     }
+
+    .logoSize {
+        margin-left: 50px;
+        font-size: 3.7em;
+    }
+
+    .logo{
+        position: relative;
+        top: 0;
+        right: 35px;
+    }
+
+    .navegacion {
+       padding-top: 20px;
+       padding-bottom: 20px;
+    }
+
+    .secciones {
+        display: none;
+    }
+
+    .secc {
+        position: relative;
+        top: 70px;
+        left: 0;
+        height: 9.5vh;
+    }
+
+    .navbar-responsive {
+        display: flex;
+        flex-direction: row;
+       padding-left: 0;
+    }
+
+    .boton-navbar-1 {
+        margin-left: 110px;
+        text-align: center;
+    }
+
+    .boton-navbar {
+       margin-top: 10px;
+    }
 }
 
 @media all and (min-width: 768px) and (max-width:1080px) {
@@ -106,5 +157,24 @@
     .cardNoticiaCategoria {
         display: flex;
         flex-direction: row;
+    }
+
+    .logo {
+        margin-left: 140px;
+    }
+
+    .boton-navbar {
+        margin-right: 10px;
+    }
+
+    .navbar-responsive {
+        padding-left: 100px;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .logoSize {
+        margin-left: 10px;
+        font-size: 5.5em;
     }
 }

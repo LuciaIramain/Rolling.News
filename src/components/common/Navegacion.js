@@ -25,10 +25,10 @@ const Navegacion = (props) => {
 
   return (
     <Fragment>
-      <Navbar bg="light" className="d-flex justify-content-between px-4">
-        <Button variant="outline-dark" onClick={handleShow}>
-          <FontAwesomeIcon icon={faAlignJustify} className="mx-2" />
-          Secciones
+      <Navbar bg="light" className="navegacion d-flex justify-content-between" expand="md">
+        <Button variant="outline-dark" onClick={handleShow} className='secc'>
+        <FontAwesomeIcon icon={faAlignJustify} className="secciones mx-1" />
+           Secciones
         </Button>
         <Nav>
           <Offcanvas show={show} onHide={handleClose}>
@@ -41,11 +41,11 @@ const Navegacion = (props) => {
         <Navbar.Brand href="/" className="logo">
           RollingNews
         </Navbar.Brand>
-        <section>
-          <Link to="*" className="mx-3 btn btn-outline-dark">
+        <section className="navbar-responsive">
+          <Link to="*" className="boton-navbar boton-navbar-1 btn btn-outline-dark">
             Suscribirse
           </Link>
-          <Link to="/login" className="mx-3 btn btn-outline-dark">
+          <Link to="/login" className="boton-navbar btn btn-outline-dark">
             Iniciar sesión
           </Link>
         </section>

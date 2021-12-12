@@ -1,6 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
 import { Card, Button } from "react-bootstrap";
-import DetalleNoticia from "./DetalleNoticia";
 import Navegacion from "../common/Navegacion";
 import "../css/estiloGeneral.css";
 
