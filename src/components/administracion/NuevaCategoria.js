@@ -25,7 +25,7 @@ const NuevaCategoria = (props) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(nuevaCategoria),
+          body: JSON.stringify(nuevaCategoria)
         };
         const res = await fetch(URL, parametros);
         console.log(res);

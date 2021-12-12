@@ -5,6 +5,9 @@ import NavegacionAdm from '../common/NavegacionAdm';
 import "../css/estiloGeneral.css";
 
 const ListarCategoria = (props) => {
+
+    
+
     return (
         <div className="contenido">
             <NavegacionAdm />
