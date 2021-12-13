@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -26,20 +26,6 @@ const NuevaNoticia = (props) => {
   const cambiarCategoria = (e) => {
     setCategoria(e.target.value);
   };
-
-  let noticiaCategoria = props.noticias;
-
-  const categorias = noticiaCategoria.map(cat => 
-    <Form.Check
-      key={cat._id}
-      type="radio"
-      label={cat.categoria}
-      name="categoria"
-      value={cat.categoria}
-      onChange={cambiarCategoria}
-      inline
-    ></Form.Check>
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,8 +95,25 @@ const NuevaNoticia = (props) => {
     }
   };
 
+  let noticiaCategoria = props.noticias;
+  const noticiaCategoriaArr = new Set(noticiaCategoria);
+  let resultadoCategoria = [...noticiaCategoriaArr];
+  console.log(resultadoCategoria)
+
+  const categorias = resultadoCategoria.map(cat => 
+    <Form.Check
+      key={cat._id}
+      type="radio"
+      label={cat.categoria}
+      name="categoria"
+      value={cat.categoria}
+      onChange={cambiarCategoria}
+      inline
+    ></Form.Check>
+  );
+
   return (
-    <Fragment className="contenido">
+    <div className="contenido">
       <NavegacionAdm />
       <h1 className="my-4 text-center">Agregar una nueva noticia</h1>
       <Container className="my-5">
@@ -254,7 +257,7 @@ const NuevaNoticia = (props) => {
           </Button>
         </Form>
       </Container>
-    </Fragment>
+    </div>
   );
 };
 

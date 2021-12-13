@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Navbar, Nav, OverlayTrigger, Tooltip, Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -12,17 +12,29 @@ const NavegacionAdm = () => {
   let navigate = useNavigate();
   const [usuario, setUsuario] = useState({
     email: "",
-    password: "",
-    token: []
+    password: ""
   });
+  const [token, setToken] = useState([]);
+
+  useEffect(()=>{
+    const usuarioLogged = localStorage.getItem('usuario');
+    const tokenLogged = localStorage.getItem('token');
+    if(usuarioLogged){
+      const usuario = JSON.parse(usuarioLogged);
+      const token = JSON.parse(tokenLogged);
+      setUsuario(usuario);
+      setToken(token)
+    }
+    if(!tokenLogged) {
+        navigate('/')
+    }
+  }, [])
 
   const handleLogout = () => {
     try {
-      // const consulta = await fetch(URL_U);
-      // const respuesta = await consulta.json();
-      setUsuario(null);
-      localStorage.removeItem('usuario');
-      navigate('/');
+        localStorage.removeItem('usuario');
+        localStorage.removeItem('token');
+        navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +43,7 @@ const NavegacionAdm = () => {
   return (
     <Fragment>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/" className="logo ps-5">
+        <Navbar.Brand href="/administracion" className="logo ps-5">
           RollingNews
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

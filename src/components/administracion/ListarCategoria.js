@@ -6,10 +6,6 @@ import "../css/estiloGeneral.css";
 
 const ListarCategoria = (props) => {
 
-    // const categoriaFiltrada = props.noticias.filter()
-    // console.log(categoriaFiltrada);
-    // console.log(props.noticias.categoria)
-
     return (
         <div className="contenido">
             <NavegacionAdm />

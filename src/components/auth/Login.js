@@ -12,25 +12,28 @@ const Login = () => {
   let navigate = useNavigate();
   const [errorCampos, setErrorCampos] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
-  let newToken = null;
   const [usuario, setUsuario] = useState({
     email: "",
     password: "",
-    token: []
+    
   });
+  const [token, setToken] = useState([]);
 
   useEffect(()=>{
     const usuarioLogged = localStorage.getItem('usuario');
+    const tokenLogged = localStorage.getItem('token');
     if(usuarioLogged){
       const usuario = JSON.parse(usuarioLogged);
+      const token = JSON.parse(tokenLogged);
       setUsuario(usuario);
+      setToken(token)
     }
   }, [])
 
-  const { email, password, token } = usuario;
+  const { email, password } = usuario;
   
   const obtenerToken = token => {
-    newToken = `Bearer ${token}` // cuando lo uso me devuelve bearer null porque no encuentro en res mi token
+    token = `Bearer ${token}` // cuando lo uso me devuelve bearer null porque no encuentro en res mi token
   }
 
   const changeLogin = (e) => {
@@ -40,11 +43,10 @@ const Login = () => {
     });
   };
 
-  const login = async () => {
+  const login = () => {
     const datosUsuario = {
       email,
-      password, 
-      token
+      password
     }
 
     try {
@@ -55,17 +57,17 @@ const Login = () => {
         },
         body: JSON.stringify(datosUsuario),
       };
-
-      const res = await fetch(URL_U, parametros);
-      console.log('respuesta', res);
-      if ((await res.status) === 200) {
-        console.log(res);
-        obtenerToken(newToken);
-        localStorage.setItem('usuario', JSON.stringify(datosUsuario));
-        navigate('/administracion');
-        return;
-      } 
       
+      fetch(URL_U, parametros)
+      .then(response => response.json())
+      .then(data =>
+      {
+        obtenerToken(data);
+        localStorage.setItem('usuario', JSON.stringify(datosUsuario));
+        localStorage.setItem('token', JSON.stringify(data));
+        navigate('/administracion');
+        return;}
+      );
     } catch (error) {
       console.log(error);
       Swal.fire(
@@ -113,7 +115,7 @@ const Login = () => {
           ) : null}
           {errorPassword ? (
             <Alert variant={"danger"}>
-              El password debe ser de al menos 6 caracteres
+              Contraseña incorrecta
             </Alert>
           ) : null}
           <Form.Group className="mb-3">
