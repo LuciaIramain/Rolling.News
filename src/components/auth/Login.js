@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
-import "../css/estiloGeneral.css"
+import "../css/estiloGeneral.css";
 
 const Login = () => {
   const URL = process.env.REACT_APP_API_URL;
@@ -12,12 +12,26 @@ const Login = () => {
   let navigate = useNavigate();
   const [errorCampos, setErrorCampos] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+  let newToken = null;
   const [usuario, setUsuario] = useState({
     email: "",
     password: "",
+    token: []
   });
 
-  const { email, password } = usuario;
+  useEffect(()=>{
+    const usuarioLogged = localStorage.getItem('usuario');
+    if(usuarioLogged){
+      const usuario = JSON.parse(usuarioLogged);
+      setUsuario(usuario);
+    }
+  }, [])
+
+  const { email, password, token } = usuario;
+  
+  const obtenerToken = token => {
+    newToken = `Bearer ${token}` // cuando lo uso me devuelve bearer null porque no encuentro en res mi token
+  }
 
   const changeLogin = (e) => {
     setUsuario({
@@ -29,7 +43,8 @@ const Login = () => {
   const login = async () => {
     const datosUsuario = {
       email,
-      password
+      password, 
+      token
     }
 
     try {
@@ -44,6 +59,9 @@ const Login = () => {
       const res = await fetch(URL_U, parametros);
       console.log('respuesta', res);
       if ((await res.status) === 200) {
+        console.log(res);
+        obtenerToken(newToken);
+        localStorage.setItem('usuario', JSON.stringify(datosUsuario));
         navigate('/administracion');
         return;
       } 
@@ -79,8 +97,10 @@ const Login = () => {
     // peticion get para verificar -- que token sea admitido y descifrar el password
     login({
       email,
-      password
+      password,
+      token
     });
+    
   };
 
   return (

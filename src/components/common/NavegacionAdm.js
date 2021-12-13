@@ -1,18 +1,28 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Navbar, Nav, OverlayTrigger, Tooltip, Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "../css/estiloGeneral.css";
 import aLogo from "../img/a-logo.jpg";
 
 const NavegacionAdm = () => {
-  const URL = process.env.REACT_APP_API_URL;
-  const URL_U = URL + "usuarios/auth/";
+  // const URL = process.env.REACT_APP_API_URL;
+  // const URL_U = URL + "usuarios/auth/";
+  let navigate = useNavigate();
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: "",
+    token: []
+  });
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      const consulta = await fetch(URL_U);
-      const respuesta = await consulta.json();
+      // const consulta = await fetch(URL_U);
+      // const respuesta = await consulta.json();
+      setUsuario(null);
+      localStorage.removeItem('usuario');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
