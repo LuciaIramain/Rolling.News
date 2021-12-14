@@ -1,18 +1,30 @@
 import React, {useState, useEffect} from "react";
 import {useParams, Link} from 'react-router-dom';
 import { Card } from "react-bootstrap";
-import "../css/estiloGeneral.css"
 import NavegacionAdm from "../common/NavegacionAdm";
 import Navegacion from "../common/Navegacion";
+import "../css/estiloGeneral.css"
 
 const Categorias = () => {
   const [noticias, setNoticias] = useState([]);
   const URL = process.env.REACT_APP_API_URL;
   const params = useParams();
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: ""
+  });
+  const [token, setToken] = useState([]);
   
-  // hacer un get con ese params
+  const usuarioLogged = localStorage.getItem('usuario');
+  const tokenLogged = localStorage.getItem('token');
   useEffect(()=>{
     getNews();
+    if(usuarioLogged){
+      const usuario = JSON.parse(usuarioLogged);
+      const token = JSON.parse(tokenLogged);
+      setUsuario(usuario);
+      setToken(token)
+    }
   }, [])
 
   const getNews = async () => {
@@ -47,10 +59,10 @@ const Categorias = () => {
   return (
     <div className="contenido">
       {/* si estas logeado renderizame navegacionAdm sino Navegacion */}
-      {/* {(login) ? <NavegacionAdm /> : <Navegacion />} */}
+      {(!tokenLogged) ? <Navegacion /> : <NavegacionAdm />}
       <h1 className="text-center my-5">{params.categoria}</h1>
       <section className='cardNoticiaCategoria'>
-      {newsCategoria}
+        {newsCategoria}
       </section>
     </div>
   );

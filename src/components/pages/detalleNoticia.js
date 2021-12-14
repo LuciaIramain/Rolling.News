@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import NavegacionAdm from "../common/NavegacionAdm";
+import Navegacion from "../common/Navegacion";
 import "../css/estiloGeneral.css";
 
 const DetalleNoticia = () => {
@@ -7,9 +9,23 @@ const DetalleNoticia = () => {
   const URL = process.env.REACT_APP_API_URL;
 
   const [noticia, setNoticia] = useState({});
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: ""
+  });
+  const [token, setToken] = useState([]);
+
+  const usuarioLogged = localStorage.getItem('usuario');
+  const tokenLogged = localStorage.getItem('token');
 
   useEffect(() => {
     consultarNoticia();
+    if(usuarioLogged){
+      const usuario = JSON.parse(usuarioLogged);
+      const token = JSON.parse(tokenLogged);
+      setUsuario(usuario);
+      setToken(token)
+    }
   }, []);
 
   const consultarNoticia = async () => {
@@ -28,6 +44,7 @@ const DetalleNoticia = () => {
   
   return (
     <Fragment className="contenido">
+      {(!tokenLogged) ? <Navegacion /> : <NavegacionAdm />}
       <section className="container">
       <h2 className="my-5 colorTexto">{noticia.categoria}</h2> 
       <h1 className="my-4 colorTexto">{noticia.tituloNoticia}</h1>

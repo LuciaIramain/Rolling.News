@@ -14,6 +14,7 @@ import Login from './components/auth/Login';
 import EditarNoticia from './components/administracion/EditarNoticia';
 import DetalleNoticia from './components/pages/DetalleNoticia';
 import NuevaCuenta from './components/auth/NuevaCuenta';
+import Contacto from './components/pages/Contacto';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
             <Route exact path='/auth/nueva-cuenta' element={<NuevaCuenta />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='*' element={<Error404 />} />
+            <Route exact path='/contacto' element={<Contacto />} />
           </Routes>
           <Footer />
         </Router>

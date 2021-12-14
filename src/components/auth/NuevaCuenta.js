@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -20,11 +20,6 @@ const NuevaCuenta = () => {
     password: "",
     confirmar: "",
   });
-   
-
-  useEffect(()=>{
-
-  }, [])
 
   const { nombre, email, password, confirmar } = usuario;
 

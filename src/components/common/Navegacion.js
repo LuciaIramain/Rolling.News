@@ -9,7 +9,6 @@ const Navegacion = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
 
   const categorias = props.noticias.map((noticia) => (
     <Offcanvas.Body noticia={noticia} key={noticia._id}>
