@@ -107,6 +107,11 @@
     font-size: 1.25em;
 }
 
+.canvasNav {
+    padding: 0px 0px;
+    margin: 0;
+}
+
 @media all and (min-width: 360px) and (max-width:767px) {
     
     .imgNoticia {

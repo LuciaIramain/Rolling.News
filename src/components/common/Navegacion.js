@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Navbar, Nav, Button, Offcanvas, Modal, Form } from "react-bootstrap";
+import { Navbar, Nav, Button, Offcanvas, Modal, Form, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
@@ -13,12 +13,19 @@ const Navegacion = (props) => {
   const handleShow = () => setShow(true);
 
   const [mostrarModal, setmostrarModal] = useState(false);
-
+  const [error, setError] = useState('');
+  const [nombreSus, setNombreSus] = useState("");
+  const [direccionSus, setDireccionSus] = useState("");
+  const [localidadSus, setLocalidadSus] = useState("");
+  const [codigoPostalSus, setCodigoPostalSus] = useState("");
+  const [telefonoSus, setTelefonoSus] = useState("");
+  const [emailSus, setEmailSus] = useState("");
+  
   const handleCerrar = () => setmostrarModal(false);
   const handleAbrir= () => setmostrarModal(true);
 
   const categorias = props.categoriaFiltrada?.map((categoria, index) => (
-    <Offcanvas.Body key={index}>
+    <Offcanvas.Body key={index} className='canvasNav'>
       <Link
         to={`/categoria/${categoria}`}
         className="nav-link"
@@ -31,23 +38,38 @@ const Navegacion = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    if (nombreSus.trim() === "" ||
+      direccionSus.trim() === "" ||
+      localidadSus.trim() === "" ||
+      codigoPostalSus.trim() === "" ||
+      telefonoSus.trim() === "" || 
+      emailSus.trim() === "" ) {
+      setError(true);
+      return;
+    } else {
+      emailjs
+        .sendForm("service_yhpptwo", "template_p0194qs", e.target, "user_jPFg93idCpAqXVLMdupMy")
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+      setNombreSus("");
+      setDireccionSus("");
+      setLocalidadSus("");
+      setCodigoPostalSus("");
+      setTelefonoSus("");
+      setEmailSus("");
 
-    emailjs
-      .sendForm("service_yhpptwo", "template_p0194qs", e.target, "user_jPFg93idCpAqXVLMdupMy")
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
+      Swal.fire(
+        "Su suscripción se realizó con éxito!",
+        "Recibirá diariamente las nuevas actualizaciones de RollingNews!",
+        "success"
       );
-    e.target.reset();
-    Swal.fire(
-      "Su suscripción se realizó con éxito!",
-      "Recibirá diariamente las nuevas actualizaciones de RollingNews!",
-      "success"
-    );
+    }
   };
 
   return (
@@ -84,6 +106,9 @@ const Navegacion = (props) => {
         </Modal.Header>
         <Modal.Body>
         <Form onSubmit={sendEmail}>
+        {error ? (
+            <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
+          ) : null}
               <Form.Group className="mb-3">
                 <Form.Label>Apellido y Nombre</Form.Label>
                 <Form.Control
@@ -91,6 +116,8 @@ const Navegacion = (props) => {
                   placeholder="Tu nombre"
                   className="form-control"
                   name="nombre"
+                  value={nombreSus}
+                  onChange={(e)=> setNombreSus(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -100,6 +127,8 @@ const Navegacion = (props) => {
                   placeholder="Tu dirección"
                   className="form-control"
                   name="direccion"
+                  value={direccionSus}
+                  onChange={(e)=> setDireccionSus(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -109,6 +138,8 @@ const Navegacion = (props) => {
                   placeholder="Tu localidad"
                   className="form-control"
                   name="localidad"
+                  value={localidadSus}
+                  onChange={(e)=> setLocalidadSus(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -118,6 +149,8 @@ const Navegacion = (props) => {
                   placeholder="Tu código postal"
                   className="form-control"
                   name="codigoPostal"
+                  value={codigoPostalSus}
+                  onChange={(e)=> setCodigoPostalSus(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -127,6 +160,8 @@ const Navegacion = (props) => {
                   placeholder="Tu teléfono"
                   className="form-control"
                   name="telefono"
+                  value={telefonoSus}
+                  onChange={(e)=> setTelefonoSus(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -136,6 +171,8 @@ const Navegacion = (props) => {
                   placeholder="ejemplo@ejemplo.com"
                   className="form-control"
                   name="gmail"
+                  value={emailSus}
+                  onChange={(e)=> setEmailSus(e.target.value)}
                 />
               </Form.Group>
               <Button
