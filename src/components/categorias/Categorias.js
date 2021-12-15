@@ -5,7 +5,7 @@ import NavegacionAdm from "../common/NavegacionAdm";
 import Navegacion from "../common/Navegacion";
 import "../css/estiloGeneral.css"
 
-const Categorias = () => {
+const Categorias = (props) => {
   const [noticias, setNoticias] = useState([]);
   const URL = process.env.REACT_APP_API_URL;
   const params = useParams();
@@ -59,7 +59,7 @@ const Categorias = () => {
   return (
     <div className="contenido">
       {/* si estas logeado renderizame navegacionAdm sino Navegacion */}
-      {(!tokenLogged) ? <Navegacion /> : <NavegacionAdm />}
+      {(!tokenLogged) ? <Navegacion categoriaFiltrada={props.categoriaFiltrada} /> : <NavegacionAdm />}
       <h1 className="text-center my-5">{params.categoria}</h1>
       <section className='cardNoticiaCategoria'>
         {newsCategoria}

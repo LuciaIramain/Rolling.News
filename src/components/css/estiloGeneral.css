@@ -103,6 +103,10 @@
     background-color: rgb(231, 231, 228);
 }
 
+.logoModal {
+    font-size: 1.25em;
+}
+
 @media all and (min-width: 360px) and (max-width:767px) {
     
     .imgNoticia {

@@ -37,20 +37,24 @@ function App() {
     }
   }
 
+  const categoria = noticias?.map(noticia => noticia.categoria);
+    const categoriaArr = new Set(categoria);
+    let resultadoCategoria = [...categoriaArr];
+
 
   return (
     <div>
      
         <Router>
           <Routes>
-            <Route exact path='/' element={<PaginaPrincipal noticias={noticias} consultarAPI={consultarAPI} />} />
+            <Route exact path='/' element={<PaginaPrincipal categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion' element={<Administracion  />} />
-            <Route exact path='/categoria/:categoria' element={<Categorias noticias={noticias} consultarAPI={consultarAPI} /> } />
-            <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia consultarAPI={consultarAPI} />}/>
-            <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia noticias={noticias} consultarAPI={consultarAPI} />} />
+            <Route exact path='/categoria/:categoria' element={<Categorias categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} /> } />
+            <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia categoriaFiltrada={resultadoCategoria} consultarAPI={consultarAPI} />}/>
+            <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
-            <Route exact path='/administracion/categorias' element={<ListarCategoria noticias={noticias} consultarAPI={consultarAPI} />} />
+            <Route exact path='/administracion/categorias' element={<ListarCategoria categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia consultarAPI={consultarAPI} />} />
             <Route exact path='/auth/nueva-cuenta' element={<NuevaCuenta />} />
             <Route exact path='/login' element={<Login />} />

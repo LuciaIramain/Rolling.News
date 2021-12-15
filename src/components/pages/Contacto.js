@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import fotoContacto from "../img/fotoContacto.jpg"
 import emailjs from "emailjs-com";
 import "../css/estiloGeneral.css"
@@ -62,11 +62,10 @@ const Contacto = () => {
                   name="consulta"
                 />
               </Form.Group>
-              <input
+              <Button
                 type="submit"
-                className="btn btn-primary"
-                value="Enviar"
-              ></input>
+                variant="primary"
+              >Enviar</Button>
             </Form>
           </article>
           <article className="col-md-6 col-sm-12">

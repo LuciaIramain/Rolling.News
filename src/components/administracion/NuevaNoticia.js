@@ -94,19 +94,14 @@ const NuevaNoticia = (props) => {
       }
     }
   };
-
-  let noticiaCategoria = props.noticias;
-  const noticiaCategoriaArr = new Set(noticiaCategoria);
-  let resultadoCategoria = [...noticiaCategoriaArr];
-  console.log(resultadoCategoria)
-
-  const categorias = resultadoCategoria.map(cat => 
+ 
+  const categorias = props.categoriaFiltrada?.map((categoria, index) => 
     <Form.Check
-      key={cat._id}
+      key={index}
       type="radio"
-      label={cat.categoria}
+      label={categoria}
       name="categoria"
-      value={cat.categoria}
+      value={categoria}
       onChange={cambiarCategoria}
       inline
     ></Form.Check>
@@ -187,70 +182,6 @@ const NuevaNoticia = (props) => {
             {/* traer las categorias, lo mapeo con un array y pongo un solo radio dinamico */}
             <h5>Categoria *</h5>
             {categorias}
-            {/* <Form.Check
-              type="radio"
-              label="Actualidad" //props.namecategoria
-              name="categoria"
-              value="Actualidad" //props.categoria
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Espectáculos"
-              name="categoria"
-              value="Espectáculos"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Deportes"
-              name="categoria"
-              value="Deportes"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Tecnología"
-              name="categoria"
-              value="Tecnología"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Economía"
-              name="deportes"
-              value="Economía"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Política"
-              name="categoria"
-              value="Política"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Salud"
-              name="categoria"
-              value="Salud"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Fotografía"
-              name="categoria"
-              value="Fotografía"
-              onChange={cambiarCategoria}
-              inline
-            ></Form.Check> */}
           </section>
           <Button className="color text-light w-100 mb-5 mt-3" type="submit">
             Agregar noticia

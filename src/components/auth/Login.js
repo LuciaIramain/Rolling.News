@@ -66,8 +66,8 @@ const Login = () => {
         localStorage.setItem('usuario', JSON.stringify(datosUsuario));
         localStorage.setItem('token', JSON.stringify(data));
         navigate('/administracion');
-        return;}
-      );
+        return;
+      });
     } catch (error) {
       console.log(error);
       Swal.fire(

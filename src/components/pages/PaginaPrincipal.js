@@ -9,7 +9,7 @@ const PaginaPrincipal = (props) => {
    
   return (
     <div className="contenido">
-      <Navegacion noticias={props.noticias} consultarAPI={props.consultarAPI} />
+      <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} consultarAPI={props.consultarAPI} />
       <div className="row mb-5">
         <section className="col-sm-12 col-md-6">
           <Card className="m-4">
