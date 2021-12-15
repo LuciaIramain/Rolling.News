@@ -59,7 +59,7 @@ const Categorias = (props) => {
   return (
     <div className="contenido">
       {/* si estas logeado renderizame navegacionAdm sino Navegacion */}
-      {(!tokenLogged) ? <Navegacion categoriaFiltrada={props.categoriaFiltrada} /> : <NavegacionAdm />}
+      {(!tokenLogged) ? <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} consultarAPI={props.consultarAPI} /> : <NavegacionAdm />}
       <h1 className="text-center my-5">{params.categoria}</h1>
       <section className='cardNoticiaCategoria'>
         {newsCategoria}

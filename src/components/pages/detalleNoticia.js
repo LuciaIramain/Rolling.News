@@ -44,7 +44,7 @@ const DetalleNoticia = (props) => {
   
   return (
     <div className="contenido">
-      {(!tokenLogged) ? <Navegacion categoriaFiltrada={props.categoriaFiltrada} /> : <NavegacionAdm />}
+      {(!tokenLogged) ? <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} /> : <NavegacionAdm />}
       <section className="container">
         <h2 className="my-5 colorTexto">{noticia.categoria}</h2> 
         <h1 className="my-4 colorTexto">{noticia.tituloNoticia}</h1>

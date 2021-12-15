@@ -20,7 +20,7 @@ const Footer = () => {
           Acerca de Nosotros
         </Link>
         <Link to="*" className="nav-link text-light">
-          Terminos y Condiciones
+          Términos y Condiciones
         </Link>
         <p className="mt-2 ">Seguinos en nuestras redes sociales:</p>
         <div>
@@ -30,11 +30,15 @@ const Footer = () => {
             icon={faFacebook}
           />
         </a>
-        <FontAwesomeIcon
-          className="me-2 fa-2x"
-          icon={faInstagram}
-        ></FontAwesomeIcon>
-        <FontAwesomeIcon className="fa-2x" icon={faTwitter}></FontAwesomeIcon>
+        <a href="https://www.instagram.com/?hl=es-la">
+          <FontAwesomeIcon
+            className="me-2 fa-2x text-light"
+            icon={faInstagram}
+          ></FontAwesomeIcon>
+        </a>
+        <a href="https://twitter.com/?lang=es">
+          <FontAwesomeIcon className="fa-2x text-light" icon={faTwitter}></FontAwesomeIcon>
+        </a>
         </div>
       </article>
       <article className="col-sm-12 col-md-4 d-flex flex-column align-items-center">

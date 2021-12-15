@@ -6,7 +6,7 @@ import Navegacion from "../common/Navegacion";
 import Swal from "sweetalert2";
 import "../css/estiloGeneral.css"
 
-const Contacto = () => {
+const Contacto = (props) => {
   const [error, setError] = useState('');
   const [nombreCont, setNombreCont] = useState('');
   const [emailCont, setEmailCont] = useState('');
@@ -45,7 +45,7 @@ const Contacto = () => {
 
   return (
     <div>
-    <Navegacion />
+    <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} consultarAPI={props.consultarAPI} />
       <div className="container contenedor">
         <section className="text-center text-light fondoContacto py-4">
           <div>

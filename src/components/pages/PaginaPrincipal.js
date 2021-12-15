@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navegacion from "../common/Navegacion";
@@ -6,9 +6,35 @@ import covid  from "../img/covid.jpg"
 import covid2  from "../img/covid2.jpg"
 import mandalorian  from "../img/Mandalorian.jpg"
 import primeVideo from "../img/primeVideo.jpg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTemperatureLow } from "@fortawesome/free-solid-svg-icons";
 import "../css/estiloGeneral.css";
 
 const PaginaPrincipal = (props) => {
+
+  const [busqueda, setBusqueda] = useState({
+    ciudad: 'San Miguel de Tucumán',
+    pais: 'AR'
+  });
+  
+  const [resultadoClima, setResultadoClima] = useState({});
+  const {ciudad, pais} = busqueda;
+
+  useEffect(() => {
+    const consultarClima = async () => {
+      const appId = '75f59b7f3b766efe0b416d8a157cfe4b';
+      const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+      const respuesta = await fetch(url);
+      const res = await respuesta.json();
+      console.log(res);
+      setResultadoClima(res);
+    }
+    consultarClima();
+  }, []);
+
+  const {name, main} = resultadoClima;
+  const kelvin = 273.15;
+  if(!name) return null;
   
     // hacer un filter y que me muestre las categorias que necesito
     const noticias = props.noticias;
@@ -19,6 +45,7 @@ const PaginaPrincipal = (props) => {
     
     const noticiaDestacada = destacada?.map(noticia => 
       <Card className="m-4 w-25" key={noticia._id}>
+            <h5 className="colorTexto">{noticia.categoria}</h5>
             <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
               <Card.Title>{noticia.tituloNoticia}</Card.Title>
@@ -80,14 +107,12 @@ const PaginaPrincipal = (props) => {
           </Card>
     );
     
-
-   
   return (
     <div className="contenido">
       <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} consultarAPI={props.consultarAPI} />
-      <section className="d-flex justify-content-evenly">
-        <p>clima</p>
-        
+      <section className="text-center mt-3">
+        <p>{name}</p>
+        <p className=""> <FontAwesomeIcon icon={faTemperatureLow}></FontAwesomeIcon> {parseFloat(main.temp - kelvin).toFixed(2)} ºC</p>
       </section>
       <main className="mainPrincipal">
       <section>

@@ -50,7 +50,7 @@ function App() {
             <Route exact path='/' element={<PaginaPrincipal categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion' element={<Administracion  />} />
             <Route exact path='/categoria/:categoria' element={<Categorias categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} /> } />
-            <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia categoriaFiltrada={resultadoCategoria} consultarAPI={consultarAPI} />}/>
+            <Route exact path='/detalle-noticia/:id' element={<DetalleNoticia categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />}/>
             <Route exact path='/administracion/nueva-noticia' element={<NuevaNoticia categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
@@ -59,7 +59,7 @@ function App() {
             <Route exact path='/auth/nueva-cuenta' element={<NuevaCuenta />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='*' element={<Error404 />} />
-            <Route exact path='/contacto' element={<Contacto />} />
+            <Route exact path='/contacto' element={<Contacto categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI}/>} />
           </Routes>
           <Footer />
         </Router>
