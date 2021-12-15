@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { campoRequerido } from "../common/validaciones";
@@ -56,7 +56,7 @@ const EditarNoticia = (props) => {
     const categoriaSeleccionada =
       (categoria === "") ? noticia.categoria : categoria;
     const destacadaSeleccionada =
-      (destacada === "") ? noticia.destacada : destacada;
+      (destacada === "") ? destacada : noticia.destacada;
       
     if (
       campoRequerido(tituloNoticiaRef.current.value) === "" &&
@@ -112,12 +112,12 @@ const EditarNoticia = (props) => {
   };
 
   return (
-    <Fragment className="contenido">
+    <div className="contenido">
       <NavegacionAdm />
       <h1 className="my-4 text-center">Editar noticia</h1>
       <Container className="my-5">
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Group className="mb-3" >
             <Form.Check
               type="checkbox"
               label="Noticia destacada"
@@ -276,7 +276,7 @@ const EditarNoticia = (props) => {
           </Button>
         </Form>
       </Container>
-    </Fragment>
+    </div>
   );
 };
 

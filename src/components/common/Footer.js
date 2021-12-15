@@ -10,9 +10,7 @@ const Footer = () => {
   return (
     <section className="row bg-dark text-light text-center py-4 mt-5 piePagina">
       <article className="col-sm-12 col-md-4 text-center">
-        <Link to="/" className="nav-link logoFooter">
-          RollingNews
-        </Link>
+        <h1 className="logoFooter">RollingNews</h1>
       </article>
       <article className="col-sm-12 col-md-4">
         <Link to="/contacto" className="nav-link text-light">

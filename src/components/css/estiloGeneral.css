@@ -20,7 +20,7 @@
     text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
                  0.12rem 0.12rem 0.0rem #1a1919,
                  0.18rem 0.18rem 0.0rem #1a1919,
-                 0.24rem 0.24rem 0.18rem #000000;
+                 0.24rem 0.24rem 0.10rem #000000;
     font-size: 3em;
 }
 
@@ -29,8 +29,8 @@
     text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
                  0.12rem 0.12rem 0.0rem #1a1919,
                  0.18rem 0.18rem 0.0rem #1a1919,
-                 0.24rem 0.24rem 0.18rem #000000;
-    font-size: 2em;
+                 0.24rem 0.24rem 0.10rem #000000;
+    font-size: 2.5em;
 }
 
 .logoSize {
@@ -110,6 +110,28 @@
 .canvasNav {
     padding: 0px 0px;
     margin: 0;
+}
+
+.mainPrincipal {
+    width: 70%;
+    display: inline-block;
+}
+
+.asidePrincipal {
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.covidImg2 {
+    width: 26vw;
+    height: 35vh;
+    margin-top: 70px;
+}
+
+.imgCovid, .imgPrime {
+    width: 26vw;
+    margin-top: 70px;
 }
 
 @media all and (min-width: 360px) and (max-width:767px) {
@@ -194,7 +216,7 @@
         text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
                      0.12rem 0.12rem 0.0rem #1a1919,
                      0.18rem 0.18rem 0.0rem #1a1919,
-                     0.24rem 0.24rem 0.18rem #000000;
+                     0.24rem 0.24rem 0.10rem #000000;
         font-size: 2em;
     }
     
@@ -251,7 +273,7 @@
         text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
                      0.12rem 0.12rem 0.0rem #1a1919,
                      0.18rem 0.18rem 0.0rem #1a1919,
-                     0.24rem 0.24rem 0.18rem #000000;
+                     0.24rem 0.24rem 0.10rem #000000;
         font-size: 2em;
     }
 }

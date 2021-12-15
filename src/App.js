@@ -38,8 +38,8 @@ function App() {
   }
 
   const categoria = noticias?.map(noticia => noticia.categoria);
-    const categoriaArr = new Set(categoria);
-    let resultadoCategoria = [...categoriaArr];
+  const categoriaArr = new Set(categoria);
+  let resultadoCategoria = [...categoriaArr];
 
 
   return (
