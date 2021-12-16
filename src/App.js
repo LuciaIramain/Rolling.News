@@ -55,7 +55,7 @@ function App() {
             <Route exact path='/administracion/nueva-categoria' element={<NuevaCategoria consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/noticias' element={<ListarNoticias noticias={noticias} consultarAPI={consultarAPI} />} />
             <Route exact path='/administracion/categorias' element={<ListarCategoria categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI} />} />
-            <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia consultarAPI={consultarAPI} />} />
+            <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia categoriaFiltrada={resultadoCategoria} consultarAPI={consultarAPI} />} />
             <Route exact path='/auth/nueva-cuenta' element={<NuevaCuenta />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='*' element={<Error404 />} />

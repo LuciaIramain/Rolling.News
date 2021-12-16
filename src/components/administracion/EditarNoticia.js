@@ -56,7 +56,7 @@ const EditarNoticia = (props) => {
     const categoriaSeleccionada =
       (categoria === "") ? noticia.categoria : categoria;
     const destacadaSeleccionada =
-      (destacada === "") ? destacada : noticia.destacada;
+      (destacada === "") ? noticia.destacada :  destacada;
       
     if (
       campoRequerido(tituloNoticiaRef.current.value) === "" &&
@@ -110,6 +110,21 @@ const EditarNoticia = (props) => {
       }
 		}
   };
+
+  const categorias = props.categoriaFiltrada?.map((categoria, index) => 
+  <Form.Check
+  key={index}
+  type="radio"
+  label={categoria}
+  name="categoria"
+  value={categoria}
+  onChange={cambiarCategoria}
+  defaultChecked={
+    noticia.categoria && noticia.categoria === {categoria}
+  }
+  inline
+></Form.Check>
+  );
 
   return (
     <div className="contenido">
@@ -182,94 +197,7 @@ const EditarNoticia = (props) => {
           </Form.Group>
           <section className="text-center my-3">
             <h5>Categoria *</h5>
-            <Form.Check
-              type="radio"
-              label="Actualidad"
-              name="categoria"
-              value="Actualidad"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Actualidad"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Espectáculos"
-              name="categoria"
-              value="Espectáculos"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Espectáculos"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Deportes"
-              name="categoria"
-              value="Deportes"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Deportes"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Tecnología"
-              name="categoria"
-              value="Tecnología"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Tecnología"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Economía"
-              name="categoria"
-              value="Economía"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Economía"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Política"
-              name="categoria"
-              value="Política"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Política"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Salud"
-              name="categoria"
-              value="Salud"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Salud"
-              }
-              inline
-            ></Form.Check>
-            <Form.Check
-              type="radio"
-              label="Fotografía"
-              name="categoria"
-              value="Fotografía"
-              onChange={cambiarCategoria}
-              defaultChecked={
-                noticia.categoria && noticia.categoria === "Fotografía"
-              }
-              inline
-            ></Form.Check>
+            {categorias}
           </section>
           <Button className="color text-light w-100 mb-5 mt-3" type="submit">
             Guardar cambios
