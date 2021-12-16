@@ -43,7 +43,7 @@ const NavegacionAdm = () => {
   return (
     <Fragment>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/administracion" className="logo ps-5">
+        <Navbar.Brand href="/administracion" className="logoAdm ps-5">
           RollingNews
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

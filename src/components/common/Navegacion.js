@@ -82,7 +82,7 @@ const Navegacion = (props) => {
         <Nav>
           <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title className="logo">RollingNews</Offcanvas.Title>
+              <Offcanvas.Title className="logoCanvas">RollingNews</Offcanvas.Title>
             </Offcanvas.Header>
             {categorias}
           </Offcanvas>

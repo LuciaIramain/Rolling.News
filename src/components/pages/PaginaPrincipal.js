@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navegacion from "../common/Navegacion";
-import covid  from "../img/covid.jpg"
-import covid2  from "../img/covid2.jpg"
-import mandalorian  from "../img/Mandalorian.jpg"
+import covid  from "../img/covid.jpg";
+import covid2  from "../img/covid2.jpg";
+import mandalorian  from "../img/Mandalorian.jpg";
 import primeVideo from "../img/primeVideo.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTemperatureLow } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,6 @@ const PaginaPrincipal = (props) => {
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
       const respuesta = await fetch(url);
       const res = await respuesta.json();
-      console.log(res);
       setResultadoClima(res);
     }
     consultarClima();
@@ -44,7 +43,7 @@ const PaginaPrincipal = (props) => {
     const salud = noticias?.filter(sal => sal.categoria === 'Salud');
     
     const noticiaDestacada = destacada?.map(noticia => 
-      <Card className="m-4 w-25" key={noticia._id}>
+      <Card className="m-4 cardPrincipal" key={noticia._id}>
             <h5 className="colorTexto">{noticia.categoria}</h5>
             <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
@@ -61,7 +60,7 @@ const PaginaPrincipal = (props) => {
 
     const noticiaDeportes = deportes?.map(
       noticia => 
-      <Card className="m-4 w-25" key={noticia._id}>
+      <Card className="m-4 cardPrincipal" key={noticia._id}>
             <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
               <Card.Title>{noticia.tituloNoticia}</Card.Title>
@@ -77,7 +76,7 @@ const PaginaPrincipal = (props) => {
 
     const noticiaEconomia = economia?.map(
       noticia => 
-      <Card className="m-4 w-25" key={noticia._id}>
+      <Card className="m-4 cardPrincipal" key={noticia._id}>
             <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
               <Card.Title>{noticia.tituloNoticia}</Card.Title>
@@ -93,7 +92,7 @@ const PaginaPrincipal = (props) => {
 
     const noticiaSalud = salud?.map(
       noticia => 
-      <Card className="m-4 w-25" key={noticia._id}>
+      <Card className="m-4 cardPrincipal" key={noticia._id}>
             <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
               <Card.Title>{noticia.tituloNoticia}</Card.Title>
@@ -110,42 +109,42 @@ const PaginaPrincipal = (props) => {
   return (
     <div className="contenido">
       <Navegacion noticias={props.noticias} categoriaFiltrada={props.categoriaFiltrada} consultarAPI={props.consultarAPI} />
-      <section className="text-center mt-3">
+      <section className="text-center fondoClima">
         <p>{name}</p>
         <p className=""> <FontAwesomeIcon icon={faTemperatureLow}></FontAwesomeIcon> {parseFloat(main.temp - kelvin).toFixed(2)} ºC</p>
       </section>
       <main className="mainPrincipal">
       <section>
-      <div className="row mb-5">
+      <div className="mb-5">
         <h1 className="ms-4 colorTexto">Actualidad</h1>
-        <section className="d-flex ">
+        <section className="d-flex principalCelular">
           {noticiaDestacada}
         </section>
       </div>
       </section>
       <section className="mb-4">
         <h2 className="ms-4 colorTexto">Deportes</h2>
-        <article className="d-flex">
+        <article className="d-flex principalCelular">
           {noticiaDeportes}
         </article>
       </section>
       <section className="mb-4">
       <h2 className="ms-4 colorTexto">Economía</h2>
-        <article className="d-flex">
+        <article className="d-flex principalCelular">
           {noticiaEconomia}
         </article>
       </section>
       <section>
         <h2 className="ms-4 colorTexto">Salud</h2>
-        <article className="d-flex">
+        <article className="d-flex principalCelular">
           {noticiaSalud}
         </article>
       </section>
       </main>
       <aside className="asidePrincipal">
         <section className="mt-5 mb-3 text-center">
-          <h4 className="mb-3">¡Con tu suscripción podés ganar un mes gratis en Disney+ ¿Te lo vas a perder?!</h4>
-          <img src={mandalorian} alt="publicidad de mandalorian" />
+          <h4 className="mb-3 textoPublicidad">¡Con tu suscripción podés ganar un mes gratis en Disney+ ¿Te lo vas a perder?!</h4>
+          <img src={mandalorian} alt="publicidad de mandalorian" className="imagenMandalorian" />
         </section>
         <img src={covid} alt="banner covid" className="imgCovid"/>
         <img src={primeVideo} alt="publicidad de prime video" className="imgPrime" />

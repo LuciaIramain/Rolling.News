@@ -15,6 +15,7 @@ import EditarNoticia from './components/administracion/EditarNoticia';
 import DetalleNoticia from './components/pages/DetalleNoticia';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Contacto from './components/pages/Contacto';
+import Nosotros from './components/pages/Nosotros';
 
 
 function App() {
@@ -58,8 +59,9 @@ function App() {
             <Route exact path='/administracion/editar-noticia/:id' element={<EditarNoticia categoriaFiltrada={resultadoCategoria} consultarAPI={consultarAPI} />} />
             <Route exact path='/auth/nueva-cuenta' element={<NuevaCuenta />} />
             <Route exact path='/login' element={<Login />} />
-            <Route exact path='*' element={<Error404 />} />
+            <Route exact path='*' element={<Error404 categoriaFiltrada={resultadoCategoria} />} />
             <Route exact path='/contacto' element={<Contacto categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI}/>} />
+            <Route exact path='/nosotros' element={<Nosotros categoriaFiltrada={resultadoCategoria} noticias={noticias} consultarAPI={consultarAPI}/>} />
           </Routes>
           <Footer />
         </Router>
