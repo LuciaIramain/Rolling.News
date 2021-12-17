@@ -23,7 +23,7 @@ const PaginaPrincipal = (props) => {
   useEffect(() => {
     const consultarClima = async () => {
       const appId = '75f59b7f3b766efe0b416d8a157cfe4b';
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
       const respuesta = await fetch(url);
       const res = await respuesta.json();
       setResultadoClima(res);
