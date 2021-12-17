@@ -29,4 +29,4 @@ _Para descargar el proyecto solo clona el repositorio de GitHub, tanto el backen
 
 ## Visualiza el proyecto terminado
 
-**Demo del proyecto:** ()
+**Proyecto en netlify:** (rollingnews21.netlify.app)
