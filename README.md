@@ -19,6 +19,8 @@ _Para descargar el proyecto solo clona el repositorio de GitHub, tanto el backen
 - Bootstrap 5
 - Emailjs.com
 - React-bootstrap
+- Heroku
+- MongoDB Atlas
     
 ## Autores
 
