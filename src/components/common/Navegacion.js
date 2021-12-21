@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+import news from "../img/logoNews2.png"
 import "../css/estiloGeneral.css";
 
 const Navegacion = (props) => {
@@ -75,26 +76,26 @@ const Navegacion = (props) => {
   return (
     <Fragment>
       <Navbar bg="light" className="navegacion d-flex justify-content-between" expand="md">
-        <Button variant="outline-dark" onClick={handleShow} className='secc'>
+        <Button variant="outline-dark boton-navbar" onClick={handleShow} className='secc'>
         <FontAwesomeIcon icon={faAlignJustify} className="secciones mx-1" />
            Secciones
         </Button>
         <Nav>
           <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title className="logoCanvas">RollingNews</Offcanvas.Title>
+              <Offcanvas.Title className="logoCanvas">Rolling <img src={news} alt="logo news" className="newsSize" /> </Offcanvas.Title>
             </Offcanvas.Header>
             {categorias}
           </Offcanvas>
         </Nav>
         <Navbar.Brand href="/" className="logo">
-          RollingNews
+         Rolling <img src={news} alt="logo news" className="newsSize" /> 
         </Navbar.Brand>
         <section className="navbar-responsive">
           <Button variant="outline-dark" onClick={handleAbrir} className="boton-navbar boton-navbar-1">
             Suscribirse
           </Button>
-          <Link to="/login" className="boton-navbar btn btn-outline-dark">
+          <Link to="/login" className="boton-navbar btn ">
             Iniciar sesión
           </Link>
         </section>

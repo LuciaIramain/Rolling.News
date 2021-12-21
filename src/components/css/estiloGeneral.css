@@ -27,10 +27,8 @@
 .logo {
     color: rgb(36, 141, 202) !important;
     text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
-                 0.12rem 0.12rem 0.0rem #1a1919,
-                 0.18rem 0.18rem 0.0rem #1a1919,
-                 0.24rem 0.24rem 0.10rem #000000;
-    font-size: 2.5em;
+                 0.12rem 0.12rem 0.10rem #1a1919;
+    font-size: 3.3em;
 }
 
 .logoSize {
@@ -51,9 +49,7 @@
 .logoCanvas {
     color: rgb(36, 141, 202) !important;
     text-shadow: 0.06rem 0.06rem 0.0rem #1a1919,
-                 0.12rem 0.12rem 0.0rem #1a1919,
-                 0.18rem 0.18rem 0.0rem #1a1919,
-                 0.24rem 0.24rem 0.10rem #000000;
+                 0.12rem 0.12rem 0.10rem #1a1919;
     font-size: 2em;
 }
 
@@ -87,6 +83,8 @@
 
 .boton-navbar {
     margin-right: 20px;
+    color: rgb(36, 141, 202) !important;
+    border: 2px solid rgb(36, 141, 202) !important;
 }
 
 .navegacion {
@@ -168,6 +166,10 @@
                  0.18rem 0.18rem 0.0rem #1a1919,
                  0.24rem 0.24rem 0.10rem #000000;
     font-size: 2em;
+}
+
+.newsSize {
+    width: 15%;
 }
 
 @media all and (min-width: 320px) and (max-width:400px) {
