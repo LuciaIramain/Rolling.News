@@ -37,7 +37,7 @@ const PaginaPrincipal = (props) => {
   
     // hacer un filter y que me muestre las categorias que necesito
     const noticias = props.noticias;
-    const destacada = noticias?.filter(dest => dest.destacada);
+    const destacada = noticias?.filter(dest => dest.destacada === 'destacada');
     const deportes = noticias?.filter(deporte => deporte.categoria === 'Deportes');
     const economia = noticias?.filter(econo => econo.categoria === 'Economía');
     const salud = noticias?.filter(sal => sal.categoria === 'Salud');

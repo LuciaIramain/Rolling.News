@@ -12,7 +12,7 @@ const EditarNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   let navigate = useNavigate();
 
-  const [destacada, setDestacada] = useState("");
+  const [destacada, setDestacada] = useState('');
   const [categoria, setCategoria] = useState("");
   const [noticia, setNoticia] = useState({});
 
@@ -33,31 +33,40 @@ const EditarNoticia = (props) => {
       if (res.status === 200) {
         const consulta = await res.json();
         const fechaTransf = new Date(consulta.fecha);
-        const fechaT = `${fechaTransf?.getFullYear()}-${fechaTransf?.getMonth()}-${fechaTransf?.getDate()}`;
+        // console.log('fecha date',fechaTransf)
+        const mes = `${fechaTransf && (fechaTransf.getMonth()+1)<10?'0'+(fechaTransf.getMonth()+1):(fechaTransf.getMonth()+1)}`;
+        const dia = `${fechaTransf && (fechaTransf.getDate())<10?'0'+(fechaTransf.getDate()):(fechaTransf.getDate())}`
+        const fechaT = `${fechaTransf?.getFullYear()}-${mes}-${dia}`;
+        // console.log(mes)
         setNoticia({...consulta, fechaT});
+        setDestacada(consulta.destacada);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  
+  // console.log('fecha T',noticia.fechaT);
+  // console.log('fecha BD',noticia.fecha);
 
   const verNoticiaDestacada = (e) => {
-    setDestacada(e.target.value);
+    if(destacada !== 'destacada') {
+      setDestacada('destacada');
+    } else {
+      setDestacada('');
+    }
   };
 
+  console.log('verNoticiaDestacada', destacada)
   const cambiarCategoria = (e) => {
     setCategoria(e.target.value);
   };
- 
-  console.log(fechaRef.current.value)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const categoriaSeleccionada =
-      (categoria === "") ? noticia.categoria : categoria;
-    const destacadaSeleccionada =
-      (destacada === "") ? noticia.destacada :  destacada;
-  
+    (categoria === "") ? noticia.categoria : categoria;
+
     if (
       campoRequerido(tituloNoticiaRef.current.value) ||
       campoRequerido(descripcionBreveRef.current.value) ||
@@ -80,7 +89,7 @@ const EditarNoticia = (props) => {
         autor: autorRef.current.value,
         fecha: fechaRef.current.value,
         imagen: imagenRef.current.value,
-        destacada: destacadaSeleccionada,
+        destacada: destacada,
       };
       
       try {
@@ -121,11 +130,10 @@ const EditarNoticia = (props) => {
       value={categoria}
       onChange={cambiarCategoria}
       defaultChecked={
-        noticia.categoria === {categoria}
+       noticia.categoria && noticia.categoria === categoria
       }
       inline
     ></Form.Check>
-
   );
 
   return (
@@ -138,9 +146,7 @@ const EditarNoticia = (props) => {
             <Form.Check
               type="checkbox"
               label="Noticia destacada"
-              name="destacada"
-              value="destacada"
-              onChange={verNoticiaDestacada}
+              onClick={verNoticiaDestacada}
               defaultChecked={noticia.destacada}
             />
           </Form.Group>
