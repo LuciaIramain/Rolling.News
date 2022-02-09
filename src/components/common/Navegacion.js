@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
-import news from "../img/logoNews2.png"
 import "../css/estiloGeneral.css";
+import { campoRequerido, validarMail } from "./validaciones";
 
 const Navegacion = (props) => {
   const [show, setShow] = useState(false);
@@ -39,15 +39,16 @@ const Navegacion = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    if (nombreSus.trim() === "" ||
-      direccionSus.trim() === "" ||
-      localidadSus.trim() === "" ||
-      codigoPostalSus.trim() === "" ||
-      telefonoSus.trim() === "" || 
-      emailSus.trim() === "" ) {
+    if (campoRequerido(nombreSus) ||
+      campoRequerido(direccionSus) ||
+      campoRequerido(localidadSus) ||
+      campoRequerido(codigoPostalSus) ||
+      campoRequerido(telefonoSus) || 
+      validarMail(emailSus) ) {
       setError(true);
       return;
     } else {
+      setError(false);
       emailjs
         .sendForm("service_yhpptwo", "template_p0194qs", e.target, "user_jPFg93idCpAqXVLMdupMy")
         .then(
@@ -83,13 +84,13 @@ const Navegacion = (props) => {
         <Nav>
           <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title className="logoCanvas">Rolling <img src={news} alt="logo news" className="newsSize" /> </Offcanvas.Title>
+              <Offcanvas.Title className="logoCanvas">RollingNews</Offcanvas.Title>
             </Offcanvas.Header>
             {categorias}
           </Offcanvas>
         </Nav>
         <Navbar.Brand href="/" className="logo">
-         Rolling <img src={news} alt="logo news" className="newsSize" /> 
+         RollingNews
         </Navbar.Brand>
         <section className="navbar-responsive">
           <Button variant="outline-dark" onClick={handleAbrir} className="boton-navbar boton-navbar-1">
@@ -117,6 +118,9 @@ const Navegacion = (props) => {
                   placeholder="Tu nombre"
                   className="form-control"
                   name="nombre"
+                  maxLength="40"
+                  minLength="10"
+                  required
                   value={nombreSus}
                   onChange={(e)=> setNombreSus(e.target.value)}
                 />
@@ -128,6 +132,9 @@ const Navegacion = (props) => {
                   placeholder="Tu dirección"
                   className="form-control"
                   name="direccion"
+                  maxLength="45"
+                  minLength="10"
+                  required
                   value={direccionSus}
                   onChange={(e)=> setDireccionSus(e.target.value)}
                 />
@@ -139,6 +146,9 @@ const Navegacion = (props) => {
                   placeholder="Tu localidad"
                   className="form-control"
                   name="localidad"
+                  maxLength="45"
+                  minLength="10"
+                  required
                   value={localidadSus}
                   onChange={(e)=> setLocalidadSus(e.target.value)}
                 />
@@ -150,6 +160,9 @@ const Navegacion = (props) => {
                   placeholder="Tu código postal"
                   className="form-control"
                   name="codigoPostal"
+                  min="0"
+                  max="15000"
+                  required
                   value={codigoPostalSus}
                   onChange={(e)=> setCodigoPostalSus(e.target.value)}
                 />
@@ -161,6 +174,9 @@ const Navegacion = (props) => {
                   placeholder="Tu teléfono"
                   className="form-control"
                   name="telefono"
+                  maxLength="25"
+                  minLength="6"
+                  required
                   value={telefonoSus}
                   onChange={(e)=> setTelefonoSus(e.target.value)}
                 />
@@ -172,6 +188,9 @@ const Navegacion = (props) => {
                   placeholder="ejemplo@ejemplo.com"
                   className="form-control"
                   name="gmail"
+                  maxLength="70"
+                  minLength="10"
+                  required
                   value={emailSus}
                   onChange={(e)=> setEmailSus(e.target.value)}
                 />

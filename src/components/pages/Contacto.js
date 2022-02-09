@@ -5,6 +5,7 @@ import emailjs from "emailjs-com";
 import Navegacion from "../common/Navegacion";
 import Swal from "sweetalert2";
 import "../css/estiloGeneral.css"
+import { campoRequerido, validarMail } from "../common/validaciones";
 
 const Contacto = (props) => {
   const [error, setError] = useState('');
@@ -15,9 +16,9 @@ const Contacto = (props) => {
   
     const sendEmail = (e) => {
     e.preventDefault();
-    if (nombreCont.trim() === "" ||
-        emailCont.trim() === "" ||
-        consultaCont.trim() === "") {
+    if (campoRequerido(nombreCont) ||
+        validarMail(emailCont) ||
+        campoRequerido(consultaCont)) {
       setError(true);
       return;
     } else {
@@ -67,17 +68,23 @@ const Contacto = (props) => {
                   className="form-control"
                   name="nombre"
                   value={nombreCont}
+                  maxLength="70"
+                  minLength="10"
+                  required
                   onChange={(e) => setNombreCont(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
-                  type="email"
+                  type="text"
                   placeholder="ejemplo@ejemplo.com"
                   className="form-control"
                   name="gmail"
                   value={emailCont}
+                  maxLength="70"
+                  minLength="10"
+                  required
                   onChange={(e) => setEmailCont(e.target.value)}
                 />
               </Form.Group>
@@ -90,6 +97,9 @@ const Contacto = (props) => {
                   className="form-control"
                   name="consulta"
                   value={consultaCont}
+                  maxLength="300"
+                  minLength="20"
+                  required
                   onChange={(e) => setConsultaCont(e.target.value)}
                 />
               </Form.Group>
