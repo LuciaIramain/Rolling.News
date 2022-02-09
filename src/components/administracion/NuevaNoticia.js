@@ -116,7 +116,7 @@ const NuevaNoticia = (props) => {
           {error ? (
             <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
           ) : null}
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Group className="mb-3">
             <Form.Check
               type="checkbox"
               label="Noticia destacada"
@@ -131,6 +131,8 @@ const NuevaNoticia = (props) => {
               type="text"
               value={tituloNoticia}
               onChange={(e) => setTituloNoticia(e.target.value)}
+              required
+              minLength="20"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -141,6 +143,8 @@ const NuevaNoticia = (props) => {
               value={descripcionBreve}
               onChange={(e) => setDescripcionBreve(e.target.value)}
               maxLength="500"
+              minLength="20"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -151,6 +155,7 @@ const NuevaNoticia = (props) => {
               value={descripcionDetallada}
               maxLength="10000"
               minlenght="1000"
+              required
               onChange={(e) => setDescripcionDetallada(e.target.value)}
             />
           </Form.Group>
@@ -159,6 +164,8 @@ const NuevaNoticia = (props) => {
             <Form.Control
               type="text"
               value={autor}
+              required
+              minLength="5"
               onChange={(e) => setAutor(e.target.value)}
             />
           </Form.Group>
@@ -167,6 +174,7 @@ const NuevaNoticia = (props) => {
             <Form.Control
               type="date"
               value={fecha}
+              required
               onChange={(e) => setFecha(e.target.value)}
             />
           </Form.Group>
@@ -175,11 +183,11 @@ const NuevaNoticia = (props) => {
             <Form.Control
               type="text"
               value={imagen}
+              required
               onChange={(e) => setImagen(e.target.value)}
             />
           </Form.Group>
           <section className="text-center my-4">
-            {/* traer las categorias, lo mapeo con un array y pongo un solo radio dinamico */}
             <h5>Categoria *</h5>
             {categorias}
           </section>

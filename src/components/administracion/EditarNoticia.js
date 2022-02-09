@@ -50,21 +50,22 @@ const EditarNoticia = (props) => {
   };
  
   console.log(fechaRef.current.value)
-  console.log(imagenRef.current.value)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const categoriaSeleccionada =
       (categoria === "") ? noticia.categoria : categoria;
     const destacadaSeleccionada =
       (destacada === "") ? noticia.destacada :  destacada;
-      
+  
     if (
-      campoRequerido(tituloNoticiaRef.current.value) === "" &&
-      campoRequerido(descripcionBreveRef.current.value) === "" &&
-      campoRequerido(descripcionDetalladaRef.current.value) === "" &&
-      campoRequerido(autorRef.current.value) === ""  &&
-      campoRequerido(fechaRef.current.value) === ""  &&
-      campoRequerido(imagenRef.current.value) === ""  
+      campoRequerido(tituloNoticiaRef.current.value) ||
+      campoRequerido(descripcionBreveRef.current.value) ||
+      campoRequerido(descripcionDetalladaRef.current.value) ||
+      campoRequerido(autorRef.current.value) ||
+      campoRequerido(fechaRef.current.value)  ||
+      campoRequerido(imagenRef.current.value)  ||
+      campoRequerido(categoriaSeleccionada)
     ) {
       Swal.fire(
 				"Todos los campos son obligatorios",
@@ -112,18 +113,19 @@ const EditarNoticia = (props) => {
   };
 
   const categorias = props.categoriaFiltrada?.map((categoria, index) => 
-  <Form.Check
-  key={index}
-  type="radio"
-  label={categoria}
-  name="categoria"
-  value={categoria}
-  onChange={cambiarCategoria}
-  defaultChecked={
-    noticia.categoria && noticia.categoria === {categoria}
-  }
-  inline
-></Form.Check>
+    <Form.Check
+      key={index}
+      type="radio"
+      label={categoria}
+      name="categoria"
+      value={categoria}
+      onChange={cambiarCategoria}
+      defaultChecked={
+        noticia.categoria === {categoria}
+      }
+      inline
+    ></Form.Check>
+
   );
 
   return (
