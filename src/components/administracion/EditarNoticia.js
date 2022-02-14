@@ -74,6 +74,7 @@ const EditarNoticia = (props) => {
 				"Todos los campos son obligatorios",
 				"error"
 			);
+      
     } else {
       const noticiaEditada = {
         tituloNoticia: tituloNoticiaRef.current.value,
