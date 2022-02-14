@@ -65,7 +65,15 @@ const Login = () => {
         obtenerToken(data);
         localStorage.setItem('usuario', JSON.stringify(datosUsuario));
         localStorage.setItem('token', JSON.stringify(data));
-        navigate('/administracion');
+        if (data.mensaje){
+          Swal.fire(
+            "No se pudo iniciar sesión",
+            "Por favor revise si el usuario o contraseña es correcto",
+            "error"
+          );
+        } else {
+          navigate('/administracion');
+        }
         return;
       });
     } catch (error) {

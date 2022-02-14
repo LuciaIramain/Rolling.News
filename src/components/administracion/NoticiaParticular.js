@@ -26,13 +26,11 @@ const NoticiaParticular = (props) => {
             headers: { "Content-Type": "application/json" },
           });
           if (respuesta.status === 200) {
-            // mostrar el cartel
             Swal.fire(
               "Noticia eliminada",
               "La noticia se eliminó correctamente",
               "success"
             );
-            // actualizar los datos
             props.consultarAPI();
           } else {
             Swal.fire("Se produjo un error", "Intentelo nuevamente", "error");

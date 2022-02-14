@@ -5,6 +5,7 @@ import { campoRequerido } from "../common/validaciones";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavegacionAdm from "../common/NavegacionAdm";
+import moment from 'moment';
 import "../css/estiloGeneral.css";
 
 const EditarNoticia = (props) => {
@@ -33,11 +34,8 @@ const EditarNoticia = (props) => {
       if (res.status === 200) {
         const consulta = await res.json();
         const fechaTransf = new Date(consulta.fecha);
-        // console.log('fecha date',fechaTransf)
-        const mes = `${fechaTransf && (fechaTransf.getMonth()+1)<10?'0'+(fechaTransf.getMonth()+1):(fechaTransf.getMonth()+1)}`;
-        const dia = `${fechaTransf && (fechaTransf.getDate())<10?'0'+(fechaTransf.getDate()):(fechaTransf.getDate())}`
-        const fechaT = `${fechaTransf?.getFullYear()}-${mes}-${dia}`;
-        // console.log(mes)
+        const fechaTran = new Date(fechaTransf.getTime() + fechaTransf.getTimezoneOffset() * 60000);
+        const fechaT = moment(fechaTran).format("YYYY-MM-DD");
         setNoticia({...consulta, fechaT});
         setDestacada(consulta.destacada);
       }
@@ -45,9 +43,6 @@ const EditarNoticia = (props) => {
       console.log(error);
     }
   };
-  
-  // console.log('fecha T',noticia.fechaT);
-  // console.log('fecha BD',noticia.fecha);
 
   const verNoticiaDestacada = (e) => {
     if(destacada !== 'destacada') {
@@ -57,7 +52,6 @@ const EditarNoticia = (props) => {
     }
   };
 
-  console.log('verNoticiaDestacada', destacada)
   const cambiarCategoria = (e) => {
     setCategoria(e.target.value);
   };
@@ -80,6 +74,7 @@ const EditarNoticia = (props) => {
 				"Todos los campos son obligatorios",
 				"error"
 			);
+      
     } else {
       const noticiaEditada = {
         tituloNoticia: tituloNoticiaRef.current.value,
